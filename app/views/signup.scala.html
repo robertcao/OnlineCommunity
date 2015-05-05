@@ -1,0 +1,40 @@
+@main("Signup - OC Sharing and Learning") {
+
+  <h1> Please Sign up </h1>
+
+  <form  action="@routes.User_Controller.signup()" method="post">
+    <p>
+      <label>Your username</label>
+      <input name="user_name" type="text" required="required" placeholder="login username"/>
+    </p>
+    <p>
+      <label>Your email</label>
+      <input name="email" type="email" required="required" placeholder="email address"/>
+    </p>
+    <p>
+      <label>Your password</label>
+      <input name="password" required="required" type="password" placeholder="eg. X8df!90EO"/>
+    </p>
+    <p>
+      <label>Your first name</label>
+      <input name="first_name" type="text" placeholder="first name"/>
+    </p>
+    <p>
+      <label>Your last name</label>
+      <input name="last_name" type="text" placeholder="last name"/>
+    </p>
+    <p>
+      <label>Your gender</label>
+      <input name="gender" type="radio" value="0"/>Male
+      <input name="gender" type="radio" value="1"/>Female
+    </p>
+    <p>
+      <input type="submit" value="Sign up"/>
+    </p>
+    <p class="change_link">
+                  Already a member ?
+      <a href="/login" class="to_register"> Go and log in </a>
+    </p>
+  </form>
+
+}

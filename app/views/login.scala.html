@@ -1,0 +1,25 @@
+@(form: Form[User_Controller.Login])
+
+@main("Please Log In") {
+    @helper.form(routes.User_Controller.authenticate) {
+        <h1> Please Log in </h1>
+
+        <p>
+            <label>Your username</label>
+            <input type="text" name ="user_name" placeholder="user_name" value="@form("user_name").value">
+        </p>
+        <p>
+            <label>Your password</label>
+            <input type="password" name="password" placeholder="password">
+        </p>
+        <p>
+            <button type="submit">Login</button>
+        </p>
+    }
+}
+
+
+
+
+
+

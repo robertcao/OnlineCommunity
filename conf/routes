@@ -3,9 +3,14 @@
 # ~~~~
 
 # Home page
-GET     /                           controllers.Application.index
+GET         /                    controllers.Application.index
+GET         /signup              controllers.Application.signup
+
+# User Management Module
+POST        /signup              controllers.User_Controller.signup()
+GET         /login               controllers.User_Controller.login()
+POST        /login               controllers.User_Controller.authenticate()
+GET         /listAllUsers        controllers.User_Controller.listAll()
 
 # Map static resources from the /public folder to the /assets URL path
-GET     /assets/*file               controllers.Assets.at(path="/public", file)
-
-    
+GET         /assets/*file        controllers.Assets.at(path="/public", file)
