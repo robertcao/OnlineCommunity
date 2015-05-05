@@ -1,0 +1,45 @@
+@charset "utf-8";
+/* by Shirley */
+.box{
+	width:800px;
+	height:50px;
+	
+}
+.bluebox{
+	background:#39F;
+	width:auto;
+	height:100px;
+	postion: 400;
+	top:400px;
+	
+}
+.container {
+	background: #F0F0F4;
+	height: 90%;
+	width: 250px;
+	margin-top: 25px;
+	margin-left: 25px;
+	margin-buttom: 100px;
+	position: absolute;
+}
+.container-right {
+	background: #F0F0F4;
+	height: 90%;
+	width: 650px;
+	margin-top: 25px;
+	margin-left: 325px;
+	margin-buttom: 100px;
+	position: absolute;
+}
+.footer-center {
+	margin-buttom: 70px;
+	clear:left;
+}
+
+.profile-pic{
+	padding-top: 10px;
+	padding-left: 50px;
+	padding-right: 50px;
+	padding-buttom: 50px;
+	padding-bottom: 25px;
+}
