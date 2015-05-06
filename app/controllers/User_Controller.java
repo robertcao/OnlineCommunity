@@ -22,6 +22,11 @@ import views.html.*;
 
 public class User_Controller extends Controller {
 
+        // Signup Page
+        public static Result signupform() {
+            return ok(signup.render());
+        }
+
     // add new user to DB
     // from page: /signup
     public static Result signup() {

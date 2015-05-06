@@ -6,9 +6,10 @@
 GET         /                    controllers.Application.index
 
 # User Management Module
+GET         /signup              controllers.User_Controller.signupform()
 POST        /signup              controllers.User_Controller.signup()
 GET         /login               controllers.User_Controller.login()
-POST        /login               controllers.User_Controller.authenticate()
+POST        /profile             controllers.User_Controller.authenticate()
 GET         /profile             controllers.User_Controller.authenticate()
 GET         /logout              controllers.User_Controller.logout()
 GET         /listAllUsers        controllers.User_Controller.listAll()
