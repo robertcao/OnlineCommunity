@@ -18,6 +18,7 @@ import play.mvc.Controller;
 import play.mvc.Result;
 import java.util.List;
 import play.libs.Json;
+import views.html.*;
 
 public class User_Controller extends Controller {
 
@@ -28,7 +29,7 @@ public class User_Controller extends Controller {
 
         if (userForm.hasErrors()) {
             Logger.info("Bad Form = " + userForm);
-            return badRequest(views.html.index.render(userForm.toString()));
+            return badRequest(index.render(userForm.toString()));
         } else {
             Logger.info("New Signup User = " + userForm);
             // add new user to DB
@@ -55,7 +56,7 @@ public class User_Controller extends Controller {
     // login
     // to page: /login
     public static Result login() {
-        return ok(views.html.login.render(Form.form(Login.class)));
+        return ok(login.render(Form.form(Login.class)));
     }
 
     // login authenticate
@@ -64,13 +65,21 @@ public class User_Controller extends Controller {
         Form<Login> loginForm = Form.form(Login.class).bindFromRequest();
 
         if (loginForm.hasErrors()) {
-            return badRequest(views.html.login.render(loginForm));
+            return badRequest(login.render(loginForm));
         } else {
             session().clear();
             session("user_name", loginForm.get().user_name);
-            System.out.println("session: " + session().get("user_name"));
-            return redirect(controllers.routes.Application.index());
+            System.out.println("session: " + session("user_name"));
+            return ok(profile.render(loginForm.toString()));
         }
+    }
+
+    // logout
+    // to page: /logout
+    public static Result logout() {
+        session().clear();
+        flash("success", "You have been logged out, redirect to index page.");
+        return redirect(controllers.routes.Application.index());
     }
 
     // Login Form
@@ -79,11 +88,11 @@ public class User_Controller extends Controller {
         public String password;
 
         // validator
-        public String validate() {
+        public String isLoggedIn() {
             if (User.authenticate(user_name, password) == null) {
                 return "Invalid user or password!";
             }
-            return null;
+            return session("user_name");
         }
     }
 }

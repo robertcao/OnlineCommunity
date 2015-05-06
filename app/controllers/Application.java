@@ -15,9 +15,9 @@ public class Application extends Controller {
         return ok(index.render("Online Community for Knowledge Sharing and Learning"));
     }
 
-    // Signup Page
-    public static Result signup() {
-        return ok(signup.render());
-    }
+//    // Signup Page
+//    public static Result signup() {
+//        return ok(signup.render());
+//    }
 
 }
