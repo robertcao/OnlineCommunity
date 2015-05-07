@@ -12,7 +12,7 @@ public class Application extends Controller {
 
     // Home Page
     public static Result index() {
-        return ok(index.render("Online Community for Knowledge Sharing and Learning"));
+        return ok(index.render());
     }
 
 //    // Signup Page

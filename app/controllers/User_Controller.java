@@ -34,7 +34,7 @@ public class User_Controller extends Controller {
 
         if (userForm.hasErrors()) {
             Logger.info("Bad Form = " + userForm);
-            return badRequest(index.render(userForm.toString()));
+            return badRequest(index.render());
         } else {
             Logger.info("New Signup User = " + userForm);
             // add new user to DB
@@ -75,7 +75,7 @@ public class User_Controller extends Controller {
             session().clear();
             session("user_name", loginForm.get().user_name);
             System.out.println("session: " + session("user_name"));
-            return ok(profile.render(loginForm.toString()));
+            return ok(profile.render());
         }
     }
 

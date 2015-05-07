@@ -1,40 +1,80 @@
-@main("Signup - OC Sharing and Learning") {
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Profile</title>
+<link href="css/style.css" rel="stylesheet" type="text/css" media="all" />
+<link href="css/oc.css" rel="stylesheet" type="text/css" media="all" />
+</head>
+<body>
+<div class="header">	
+    <div class="header-top">
+       <div class="wrap"> 
+	         <div class="logo">
+				<a href="index.html"><img src="./images/logo.png" alt="" /></a>
+			 </div>
+			 <div class="cssmenu">
+				<ul id="nav">
+					 <li class="current"><a href="#section-1">Sign Up</a></li>
+					 <li><a href="#section-2">Main</a></li>
+					 <li><a href="#section-3">Teach</a></li>
+					 <li><a href="#section-4">Learn</a></li>
+                     <li><a href="#profile.html">Profile</a></li>
+				</ul>
+		    </div>
+		    <div class="clear"></div>
+	   </div>
+	 </div>
+</div>
+<br />
+<br />
 
-  <h1> Please Sign up </h1>
+		<div  class ="bluebox"></div>
+ <div class="wrap">
+<br/>
+<br/>
+<h1 class="signUpTitle"> Please Sign up </h1>
+<br />
+<br />
+  <form  align="center" action="@routes.User_Controller.signup()" method="post">
+      <br />
+      <label class="signUpLabel">Your username</label>
+      <input class="signUpInput" name="user_name" type="text" required="required" placeholder="login username"/>
+        <br />
+    <br />
+      <label class="signUpLabel">Your email</label>
+      <input class="signUpInput" name="email" type="email" required="required" placeholder="email address"/>
+        <br />
+    <br />
+      <label class="signUpLabel">Your password</label>
+      <input class="signUpInput" name="password" required="required" type="password" placeholder="eg. X8df!90EO"/>
+    <br />
+        <br />
+      <label class="signUpLabel">Your first name</label>
+      <input class="signUpInput" name="first_name" type="text" placeholder="first name"/>
+    <br />
+        <br />
+      <label class="signUpLabel">Your last name</label>
+      <input class="signUpInput" name="last_name" type="text" placeholder="last name"/>
+    <br />
+        <br />
+      <label class="signUpLabel">Your gender &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
+      <input class="signUpInput" name="gender" type="radio" value="0"/>Male
+      <input class="signUpInput" name="gender" type="radio" value="1"/>Female
+    <br />
+    <br />
 
-  <form  action="@routes.User_Controller.signup()" method="post">
-    <p>
-      <label>Your username</label>
-      <input name="user_name" type="text" required="required" placeholder="login username"/>
-    </p>
-    <p>
-      <label>Your email</label>
-      <input name="email" type="email" required="required" placeholder="email address"/>
-    </p>
-    <p>
-      <label>Your password</label>
-      <input name="password" required="required" type="password" placeholder="eg. X8df!90EO"/>
-    </p>
-    <p>
-      <label>Your first name</label>
-      <input name="first_name" type="text" placeholder="first name"/>
-    </p>
-    <p>
-      <label>Your last name</label>
-      <input name="last_name" type="text" placeholder="last name"/>
-    </p>
-    <p>
-      <label>Your gender</label>
-      <input name="gender" type="radio" value="0"/>Male
-      <input name="gender" type="radio" value="1"/>Female
-    </p>
-    <p>
-      <input type="submit" value="Sign up"/>
-    </p>
+      <input class="editProfile" type="submit" value="Sign up"/>
+    <br />
+        <br />
     <p class="change_link">
                   Already a member ?
       <a href="/login" class="to_register"> Go and log in </a>
     </p>
   </form>
 
-}
+
+      
+</body>
+</html>
+

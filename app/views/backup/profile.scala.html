@@ -1,0 +1,14 @@
+@(message: String)
+
+@main("Welcome to your profile") {
+
+    @if(session().get("user_name")==null) {
+        <h1>Please Login again</h1>
+        <li><a href="/login">Login</a></li>
+    }else {
+        <h1>welcome @session().get("user_name")</h1>
+        <h1>Function List</h1>
+        <h2><a href="/logout">Logout and redirect to index</a></h2>
+        <h2><a href="/listAllUsers">List all users in JSON</a></h2>
+    }
+}
