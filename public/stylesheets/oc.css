@@ -19,7 +19,7 @@
 	height: 90%;
 	width: 250px;
 	margin-top: 25px;
-	margin-left: 25px;
+	margin-left: 125px;
 	position: absolute;
 	top: 137px;
 	left: 58px;
@@ -168,7 +168,7 @@
     display: inline-block;
     float: center;
     clear: left;
-    width: 250px;
+    width: 150px;
     text-align: center;
 	font-family: 'Ubuntu', sans-serif;
 }
@@ -178,5 +178,13 @@
   	text-align:center;
   	margin-left:7px;
 	padding: 7px;
-  
+	width: 200px;
+}
+.signUpInputRadio {
+	display: inline-block;
+	float: center;
+	text-align:center;
+	margin-left:7px;
+	padding: 7px;
+	width: 50px;
 }

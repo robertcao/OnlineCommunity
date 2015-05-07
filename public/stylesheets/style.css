@@ -132,7 +132,25 @@ body{
 	-moz-border-radius:3px;
 	-o-border-radius:3px;
 }
-.sign_up input[type="text"]{
+.sign_up input[type="text"] {
+	padding: 15px 15px 17px;
+	width: 68%;
+	margin: 0;
+	border: none;
+	background: #FFF;
+	font-size: 1em;
+	font-weight: 100;
+	color: #9E9E9E;
+	outline: none;
+	font-family: 'Ubuntu', sans-serif;
+	border-radius: 3px;
+	-webkit-border-radius: 3px;
+	-moz-border-radius: 3px;
+	-o-border-radius: 3px;
+	float: left;
+}
+
+.sign_up input[type="password"]{
 	padding:15px 15px 17px;
 	width:68%;
 	margin:0;
@@ -149,6 +167,7 @@ body{
 	-o-border-radius:3px;
 	float:left;
 }
+
 .sign_up input[type="submit"]{
 	  background: #77c344;
 	  display: inline-block;
@@ -538,6 +557,9 @@ body{
 	.sign_up input[type="text"]{
 		width:60%;
 	}
+	.sign_up input[type="password"]{
+		width:60%;
+	}
 	.sign_up,.sign_up p {
 		margin-top:1.5em;
 	}
@@ -651,6 +673,10 @@ body{
 		padding:10px;
 		font-size:14px;
 	}
+	.sign_up input[type="password"]{
+		padding:10px;
+		font-size:14px;
+	}
 	.sign_up input[type="submit"]{
 		padding:10px 14px;
 		font-size:14px;
@@ -703,6 +729,9 @@ body{
 		font-size:16px;
 	}
 	.sign_up input[type="text"]{
+		width:64%;
+	}
+	.sign_up input[type="password"]{
 		width:64%;
 	}
 	.contact h2{

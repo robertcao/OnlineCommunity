@@ -3,23 +3,23 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>Profile</title>
-<link href="css/style.css" rel="stylesheet" type="text/css" media="all" />
-<link href="css/oc.css" rel="stylesheet" type="text/css" media="all" />
+<link href="@routes.Assets.at("stylesheets/style.css")" rel="stylesheet" type="text/css" media="all" />
+<link href="@routes.Assets.at("stylesheets/oc.css")" rel="stylesheet" type="text/css" media="all" />
 </head>
 <body>
 <div class="header">	
     <div class="header-top">
        <div class="wrap"> 
 	         <div class="logo">
-				<a href="index.html"><img src="./images/logo.png" alt="" /></a>
+				<a href="/"><img src="@routes.Assets.at("images/logo.png")" alt="" /></a>
 			 </div>
 			 <div class="cssmenu">
-				<ul id="nav">
-					 <li class="current"><a href="#section-1">Sign Up</a></li>
-					 <li><a href="#section-2">Main</a></li>
-					 <li><a href="#section-3">Teach</a></li>
-					 <li><a href="#section-4">Learn</a></li>
-                     <li><a href="#profile.html">Profile</a></li>
+                 <ul id="nav">
+                     <li><a href="/">Home</a></li>
+                     <li><a href="/login">Login</a></li>
+                     <li><a href="/about">About Us</a></li>
+                     <li><a href="/contact">Contact</a></li>
+                     <li><a href="/listAllUsers">Admin</a></li>
 				</ul>
 		    </div>
 		    <div class="clear"></div>
@@ -59,8 +59,8 @@
     <br />
         <br />
       <label class="signUpLabel">Your gender &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
-      <input class="signUpInput" name="gender" type="radio" value="0"/>Male
-      <input class="signUpInput" name="gender" type="radio" value="1"/>Female
+      Male<input class="signUpInputRadio" name="gender" type="radio" value="0"/>
+      Female<input class="signUpInputRadio" name="gender" type="radio" value="1"/>
     <br />
     <br />
 
