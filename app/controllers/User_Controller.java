@@ -41,7 +41,7 @@ public class User_Controller extends Controller {
             User.create(userForm.get());
         }
 
-        return redirect(controllers.routes.Application.index());
+        return redirect("/");
     }
 
     // search all users from DB
@@ -55,7 +55,7 @@ public class User_Controller extends Controller {
     // From page: TODO
     public static Result deleteUser(Long id) {
         User.delete(id);
-        return redirect(controllers.routes.Application.index());
+        return redirect("/");
     }
 
     // login
@@ -84,7 +84,7 @@ public class User_Controller extends Controller {
     public static Result logout() {
         session().clear();
         flash("success", "You have been logged out, redirect to index page.");
-        return redirect(controllers.routes.Application.index());
+        return redirect("/");
     }
 
     // Login Form

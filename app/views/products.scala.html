@@ -1,0 +1,7 @@
+@import tags._
+
+@(products: Collection[String])
+
+<h3>@products.mkString(",")</h3>
+
+@productsIterator(products)

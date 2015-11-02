@@ -4,7 +4,10 @@
 
 # Home page
 GET         /                    controllers.Application.index
-
+GET         /index.html          controllers.Application.index
+GET         /echo/:msg           controllers.EchoApplication.echo(msg)
+GET         /v2/hello            controllers.EchoApplication.helloRedirect()
+GET         /products            controllers.Application.listProducts
 # User Management Module
 GET         /signup              controllers.User_Controller.signupform()
 POST        /signup              controllers.User_Controller.signup()

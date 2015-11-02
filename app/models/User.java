@@ -20,7 +20,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 @Entity
-@Table(name="users")
+@Table(name="user")
 public class User extends Model {
 
     @Id
