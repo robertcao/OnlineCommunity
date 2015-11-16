@@ -84,7 +84,7 @@ Learn Node.js to create dynamic, scalable network applications using the powerfu
 									</section>
 									<footer>
 										<p>
-										Pick a Date <input type="text" id="datepicker">
+										Pick a Date <input id="datepicker2">
 										</p>
 										<a href="#" class="button">Take This Course</a>
 									</footer>
@@ -405,13 +405,12 @@ Learn Node.js to create dynamic, scalable network applications using the powerfu
 			<script src="http://code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
 			<script src="@routes.Assets.at("assets/js/util.js")"></script>
 			<!--[if lte IE 8]><script src="@routes.Assets.at("assets/js/ie/respond.min.js")"/><![endif]-->
-			<script src="@routes.Assets.at("assets/js/main.js")"/>
+			<script src="@routes.Assets.at("assets/js/main.js")" />
             <script>
 				$(function() {
 					var $j = jQuery.noConflict();
-					$j("#datepicker").datepicker();			
+					$j("#datepicker2").datepicker();
 				});
 			</script>
-
 	</body>
 </html>
