@@ -13,6 +13,7 @@ GET         /signup              controllers.User_Controller.signupform()
 POST        /signup              controllers.User_Controller.signup()
 GET         /login               controllers.User_Controller.login()
 GET         /profile             controllers.User_Controller.authenticate()
+GET         /course              controllers.User_Controller.course()
 GET         /logout              controllers.User_Controller.logout()
 GET         /listAllUsers        controllers.User_Controller.listAll()
 

@@ -67,16 +67,21 @@ public class User_Controller extends Controller {
     // login authenticate
     // from page: /login
     public static Result authenticate() {
-        Form<Login> loginForm = Form.form(Login.class).bindFromRequest();
+        return ok(profile.render());
+//        Form<Login> loginForm = Form.form(Login.class).bindFromRequest();
+//
+//        if (loginForm.hasErrors()) {
+//            return badRequest(login.render(loginForm));
+//        } else {
+//            session().clear();
+//            session("user_name", loginForm.get().user_name);
+//            System.out.println("session: " + session("user_name"));
+//            return ok(profile.render());
+//        }
+    }
 
-        if (loginForm.hasErrors()) {
-            return badRequest(login.render(loginForm));
-        } else {
-            session().clear();
-            session("user_name", loginForm.get().user_name);
-            System.out.println("session: " + session("user_name"));
-            return ok(profile.render());
-        }
+    public static Result course() {
+        return ok(course.render());
     }
 
     // logout
