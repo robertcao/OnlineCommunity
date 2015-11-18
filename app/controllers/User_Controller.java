@@ -91,8 +91,14 @@ public class User_Controller extends Controller {
         }
     }
 
+    @Security.Authenticated(Secured.class)
     public static Result course() {
-        return ok(course.render());
+        if (User.find.where().eq("user_name",request().username()) != null) {
+            return ok(course.render());
+        }
+        else {
+            return redirect("/login");
+        }
     }
 
     // logout
