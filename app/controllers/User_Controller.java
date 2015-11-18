@@ -13,11 +13,12 @@ package controllers;
 
 import models.User;
 import play.Logger;
-import play.data.Form;
+import play.data.*;
 import play.mvc.Controller;
 import play.mvc.Result;
 import java.util.List;
 import play.libs.Json;
+import play.mvc.Security;
 import views.html.*;
 
 public class User_Controller extends Controller {
@@ -67,17 +68,27 @@ public class User_Controller extends Controller {
     // login authenticate
     // from page: /login
     public static Result authenticate() {
-        return ok(profile.render());
-//        Form<Login> loginForm = Form.form(Login.class).bindFromRequest();
-//
-//        if (loginForm.hasErrors()) {
-//            return badRequest(login.render(loginForm));
-//        } else {
-//            session().clear();
-//            session("user_name", loginForm.get().user_name);
-//            System.out.println("session: " + session("user_name"));
-//            return ok(profile.render());
-//        }
+        Form<Login> loginForm = Form.form(Login.class).bindFromRequest();
+        if (loginForm.hasErrors()) {
+            System.out.println("failed login due to error=" + loginForm.globalError());
+            return badRequest(login.render(loginForm));
+        } else {
+            session().clear();
+            session("user_name", loginForm.get().user_name);
+            System.out.println("session: " + session("user_name"));
+            return ok(profile.render());
+        }
+    }
+
+    @Security.Authenticated(Secured.class)
+    public static Result profile() {
+        if (User.find.where().eq("user_name",request().username()) != null) {
+            return ok(profile.render()); //TODO load the user's profile page,
+        }
+        else {
+            return redirect("/login");
+
+        }
     }
 
     public static Result course() {
@@ -98,11 +109,11 @@ public class User_Controller extends Controller {
         public String password;
 
         // validator
-        public String isLoggedIn() {
+        public String validate() {
             if (User.authenticate(user_name, password) == null) {
                 return "Invalid user or password!";
             }
-            return session("user_name");
+            return null;
         }
     }
 }
