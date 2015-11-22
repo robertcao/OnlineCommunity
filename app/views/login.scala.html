@@ -1,4 +1,4 @@
-@(form: Form[User_Controller.Login])
+@(loginForm: Form[User_Controller.Login])
 <!DOCTYPE HTML>
 <!--
 	Helios by HTML5 UP
@@ -10,10 +10,10 @@
         <title>Login</title>
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-            <!--[if lte IE 8]><script src="@routes.Assets.at("assets/js/ie/html5shiv.js")"/><![endif]-->
+        <!--[if lte IE 8]><script src="@routes.Assets.at("assets/js/ie/html5shiv.js")"/><![endif]-->
         <link rel="stylesheet" href="@routes.Assets.at("assets/css/main.css")" />
         <link rel="stylesheet" href="@routes.Assets.at("assets/css/style.css")" />
-            <!--[if lte IE 8]><link rel="stylesheet" href="@routes.Assets.at("assets/css/ie8.css")" /><![endif]-->
+        <!--[if lte IE 8]><link rel="stylesheet" href="@routes.Assets.at("assets/css/ie8.css")" /><![endif]-->
     </head>
     <body class="no-sidebar">
         <div id="page-wrapper">
@@ -45,29 +45,30 @@
                 <div class="container">
                     <article id="main" class="special">
                         <header>
+                            <div class="login-card">
                             @if(flash.contains("success")) {
                                 <p class="success">
                                 @flash.get("success")
                                 </p>
                             }
                             @helper.form(routes.User_Controller.authenticate) {
-                                <h2><a href="#">Sign In</a></h2>
-                                @if(form.hasGlobalErrors) {
+                                @if(loginForm.hasGlobalErrors) {
                                     <p class="error">
-                                    @form.globalError.message
+                                    @loginForm.globalError.message
                                     </p>
                                 }
-
-                                    <label class="signUpLabel">Your username</label>
-                                    <input class="signUpInput" name="user_name" type="text" required="required" placeholder="Your username" value="@form("user_name").value" />
+                                    <input class="signUpInput" name="user_name" type="text" required="required" placeholder="Your username" value="@loginForm("user_name").value" />
                                     <br />
-                                    <label class="signUpLabel">Your password</label>
-                                    <input class="signUpInput" name="password" required="required" type="password" placeholder="eg. X8df!90EO" value="@form("password").value" />
+
+                                    <input class="signUpInput" name="password" required="required" type="password" placeholder="password" value="@loginForm("password").value" />
                                     <br />
                                     <input class="editProfile" type="submit" value="Log in"/>
                                     <br />
 
                             }
+                                <div class="login-help">
+                                    <a href="/signup">Register</a> • <a href="#">Forgot Password</a></div>
+                            </div>
 
 
                         </header>

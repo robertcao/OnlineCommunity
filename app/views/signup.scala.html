@@ -30,7 +30,7 @@
 						<nav id="nav">
 							<ul>
 								<li><a href="/">Home</a></li>
-								<li><a href="/signin">Sign In</a></li>
+								<li><a href="/login">Sign In</a></li>
 							</ul>
 						</nav>
 
@@ -42,43 +42,30 @@
 					<div class="container">
 						<article id="main" class="special">
 							<header>
-								<h2><a href="#">Sign Up</a></h2>
+								<div class="login-card">
 
 									<form  action="@routes.User_Controller.signup()" method="post">
-								<p>
-									<label>Your username</label>
-									<input name="user_name" type="text" required="required" placeholder="login username"/>
-								</p>
-								<p>
-									<label>Your email</label>
+
+									<input name="user_name" type="text" required="required" placeholder=" login username"/>
+								<br/>
+
 									<input name="email" type="email" required="required" placeholder="email address"/>
-								</p>
-								<p>
-									<label>Your password</label>
-									<input name="password" required="required" type="password" placeholder="eg. X8df!90EO"/>
-								</p>
-								<p>
-									<label>Your first name</label>
-									<input name="first_name" type="text" placeholder="first name"/>
-								</p>
-								<p>
-									<label>Your last name</label>
-									<input name="last_name" type="text" placeholder="last name"/>
-								</p>
-								<p>
-									<label>Your gender</label>
+										<br/>
+									<input name="password" required="required" type="password" placeholder="password"/>
+										<br/>
+										<input name="first_name" type="text" placeholder=" first name"/>
+										<br/>
+									<input name="last_name" type="text" placeholder=" last name"/>
+										<br/>
 									<input name="gender" type="radio" value="0"/>Male
 									<input name="gender" type="radio" value="1"/>Female
-								</p>
-								<p>
+										<br/>
 									<input type="submit" value="Sign up"/>
-								</p>
 								<p class="change_link">
                   Already a member ?
 									<a href="/login" class="to_register"> Go and log in </a>
 								</p>
-							</form>
-
+							</form></div>
 
 							</header>
 

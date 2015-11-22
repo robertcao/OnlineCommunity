@@ -109,6 +109,28 @@ public class User_Controller extends Controller {
         return redirect("/");
     }
 
+    public static Result calendar() {
+        return ok(calendar.render());
+    }
+
+    public static Result feedback() {
+        return ok(feedback.render());
+    }
+
+    public static Result quiz() {
+        return ok(quiz.render());
+    }
+
+    public static Result teaching() {
+        return ok(teaching.render());
+    }
+
+    public static Result videotime() {
+        return ok(videotime.render());
+    }
+
+
+
     // Login Form
     public static class Login {
         public String user_name;
