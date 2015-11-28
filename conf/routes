@@ -15,6 +15,11 @@ GET         /profile             controllers.User_Controller.profile()
 GET         /course              controllers.User_Controller.course()
 GET         /logout              controllers.User_Controller.logout()
 GET         /listAllUsers        controllers.User_Controller.listAll()
+GET         /calendar            controllers.User_Controller.calendar()
+GET         /feedback            controllers.User_Controller.feedback()
+GET         /quiz                controllers.User_Controller.quiz()
+GET         /teaching            controllers.User_Controller.teaching()
+GET         /videotime           controllers.User_Controller.videotime()
 
 # Map static resources from the /public folder to the /assets URL path
 GET         /assets/*file        controllers.Assets.at(path="/public", file)
