@@ -5,6 +5,7 @@ package controllers;
  * action: a Java method that processes the request parameters, and produces a result to be sent to the client
  */
 
+import play.libs.Json;
 import play.mvc.*;
 import views.html.*;
 
@@ -19,7 +20,7 @@ public class Application extends Controller {
     }
 
     public static Result listProducts() {
-        return ok(products.render(productMap.values()));
+        return ok(Json.toJson(productMap.values()));
     }
 
     // Home Page
@@ -27,9 +28,6 @@ public class Application extends Controller {
         return ok(index.render());
     }
 
-//    // Signup Page
-//    public static Result signup() {
-//        return ok(signup.render());
-//    }
+
 
 }

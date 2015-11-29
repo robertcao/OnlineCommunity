@@ -3,48 +3,63 @@ package models;
 /**
  * User_Model: group of user properties, atomic operations
  * Methods list:
- *      constructor: User(Long id, String user_name, String email, String first_name, String password, String last_name, int gender, String user_image_path)
- *      timer:       String currentTime()
- *      creator:     void create(User user)
- *      deleter:     void delete(Long id)
+ * constructor: User(Long id, String user_name, String email, String first_name, String password, String last_name, int gender, String user_image_path)
+ * timer:       String currentTime()
+ * creator:     void create(User user)
+ * deleter:     void delete(Long id)
  * Methods as property:
- *      finder:      find = new Finder<Long, User>(Long.class, User.class)
+ * finder:      find = new Finder<Long, User>(Long.class, User.class)
  */
 
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import play.data.validation.Constraints;
 import play.db.ebean.Model;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+
+import javax.persistence.*;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
 
 @Entity
-@Table(name="user")
+@Table(name = "user")
+@JsonIdentityInfo(
+        generator = ObjectIdGenerators.PropertyGenerator.class,
+        property = "id")
 public class User extends Model {
 
+    // finder
+    public static Finder<Long, User> find = new Finder<Long, User>(Long.class, User.class);
     @Id
     @Constraints.Min(11)
     public Long id;
-
     @Constraints.Required
     public String user_name;
-
     @Constraints.Required
     public String email;
-
     @Constraints.Required
+    @JsonIgnore
     public String password;
-
     public String first_name;
     public String last_name;
     public int gender;
+    @JsonIgnore
     public String user_image_path;
+    @JsonIgnore
     public String created_at;
-
-    public User() { }
-
-    // constructor
+    @ManyToMany
+    @JoinTable(
+            name = "learners",
+            joinColumns = {@JoinColumn(name = "user_id", referencedColumnName = "id")},
+            inverseJoinColumns = {@JoinColumn(name = "course_id", referencedColumnName = "id")})
+    @JsonIgnore
+    private List<Course> learningCourses;
+    @OneToMany(mappedBy = "instructor")
+    @JsonIgnore
+    private List<Course> teachingCourses;
+    public User() {
+    }
     public User(Long id, String user_name, String email, String first_name, String password, String last_name, int gender, String user_image_path) {
         this.id = id;
         this.user_name = user_name;
@@ -55,9 +70,6 @@ public class User extends Model {
         this.gender = gender;
         this.user_image_path = user_image_path;
     }
-
-    // finder
-    public static Finder<Long, User> find = new Finder<Long, User>(Long.class, User.class);
 
     // timer
     public static String currentTime() {
@@ -76,7 +88,9 @@ public class User extends Model {
     }
 
     // deleter
-    public static void delete(Long id) { find.ref(id).delete(); }
+    public static void delete(Long id) {
+        find.ref(id).delete();
+    }
 
     // authenticator
     public static User authenticate(String user_name, String password) {
@@ -85,6 +99,22 @@ public class User extends Model {
                 .eq("user_name", user_name)
                 .eq("password", password)
                 .findUnique();
+    }
+
+    public List<Course> getLearningCourses() {
+        return learningCourses;
+    }
+
+    public void setLearningCourses(List<Course> learningCourses) {
+        this.learningCourses = learningCourses;
+    }
+
+    public List<Course> getTeachingCourses() {
+        return teachingCourses;
+    }
+
+    public void setTeachingCourses(List<Course> teachingCourses) {
+        this.teachingCourses = teachingCourses;
     }
 }
 

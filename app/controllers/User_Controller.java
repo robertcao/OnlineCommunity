@@ -3,30 +3,42 @@ package controllers;
 /**
  * User_Controller: group of several methods for User Management
  * Method list:
- *      Result signup()
- *      Result listAll()
- *      Result deleteUser(Long id)
- *      Result login()
- *      Result authenticate()
- *      String Login.validate()
+ * Result signup()
+ * Result listAll()
+ * Result deleteUser(Long id)
+ * Result login()
+ * Result authenticate()
+ * String Login.validate()
  */
 
+import com.avaje.ebean.ExpressionList;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.SerializationFeature;
 import models.User;
 import play.Logger;
 import play.data.*;
 import play.mvc.Controller;
 import play.mvc.Result;
+
 import java.util.List;
+
 import play.libs.Json;
 import play.mvc.Security;
 import views.html.*;
 
 public class User_Controller extends Controller {
+    static {
+        ObjectMapper mapper = new ObjectMapper();
+        mapper.enable(SerializationFeature.INDENT_OUTPUT);
+        mapper.setSerializationInclusion(JsonInclude.Include.NON_NULL);
+        Json.setObjectMapper(mapper);
+    }
 
-        // Signup Page
-        public static Result signupform() {
-            return ok(signup.render());
-        }
+    // Signup Page
+    public static Result signupform() {
+        return ok(signup.render());
+    }
 
     // add new user to DB
     // from page: /signup
@@ -82,10 +94,9 @@ public class User_Controller extends Controller {
 
     @Security.Authenticated(Secured.class)
     public static Result profile() {
-        if (User.find.where().eq("user_name",request().username()) != null) {
+        if (User.find.where().eq("user_name", request().username()) != null) {
             return ok(profile.render()); //TODO load the user's profile page,
-        }
-        else {
+        } else {
             return redirect("/login");
 
         }
@@ -93,10 +104,9 @@ public class User_Controller extends Controller {
 
     @Security.Authenticated(Secured.class)
     public static Result course() {
-        if (User.find.where().eq("user_name",request().username()) != null) {
+        if (User.find.where().eq("user_name", request().username()) != null) {
             return ok(course.render());
-        }
-        else {
+        } else {
             return redirect("/login");
         }
     }
@@ -129,6 +139,19 @@ public class User_Controller extends Controller {
         return ok(videotime.render());
     }
 
+    /**
+     * API JSON response
+     * @return
+     */
+    @Security.Authenticated(Secured.class)
+    public static Result currentUser() {
+        List<User> users = User.find.where().eq("user_name", request().username()).findList();
+        if (users !=null && !users.isEmpty()){
+            return ok(Json.toJson(users.get(0)));//only return the first one
+        }else{
+            return badRequest("no login user");
+        }
+    }
 
 
     // Login Form
