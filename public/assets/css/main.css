@@ -1968,7 +1968,7 @@
 /* course form*/
 .course-card {
 	padding: 2em;
-	width: 85%;
+	width: 100%;
 	background-color: #F7F7F7;
 	margin: 0 auto 10px;
 	border-radius: 2px;
@@ -1982,12 +1982,15 @@
 	font-size: 2.3em;
 }
 
-.course-card input[type=submit] {
-	width: 100%;
+.course-card input[type=submit],button {
+	width: 65%;
 	display: block;
+	margin-left: auto;
+	margin-right: auto;
 	margin-bottom: 10px;
 	position: relative;
 }
+
 
 .course-card input[type=text], input[type=password], input[type=email]{
 	height: 44px;
@@ -2010,6 +2013,22 @@
 	-moz-box-shadow: inset 0 1px 2px rgba(0,0,0,0.1);
 	-webkit-box-shadow: inset 0 1px 2px rgba(0,0,0,0.1);
 	box-shadow: inset 0 1px 2px rgba(0,0,0,0.1);
+}
+
+
+.course-card textarea {
+	-webkit-appearance: none;
+	display: block;
+	border: 0;
+	background: #fafafa;
+	width: 100%;
+	border-radius: 0.5em;
+	border: solid 1px #E5E5E5;
+	padding: 1em;
+	-moz-transition: background-color 0.35s ease-in-out, border-color 0.35s ease-in-out;
+	-webkit-transition: background-color 0.35s ease-in-out, border-color 0.35s ease-in-out;
+	-ms-transition: background-color 0.35s ease-in-out, border-color 0.35s ease-in-out;
+	transition: background-color 0.35s ease-in-out, border-color 0.35s ease-in-out;
 }
 
 .course {

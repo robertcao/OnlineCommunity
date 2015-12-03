@@ -36,11 +36,12 @@ courseApp.controller('CourseController', ['$scope', '$http', function ($scope, $
 }]);
 
 
-var courseCreateApp = angular.module('courseCreateApp', ['ngAnimate', 'ui.bootstrap']);
+var courseCreateApp = angular.module('courseCreateApp', ['ngAnimate', 'ui.bootstrap', 'cgBusy']);
 
 courseCreateApp.controller('CourseCreateController', ['$scope', '$http', function ($scope, $http) {
 
     $scope.course = {};
+    $scope.isSaving = undefined;
 
     $scope.currentUser = {};
     $http.get("/api/user").then(function (response) {
@@ -48,18 +49,22 @@ courseCreateApp.controller('CourseCreateController', ['$scope', '$http', functio
         $scope.course.instructor = $scope.currentUser;
     });
 
-
     $scope.submitMyCourseForm = function () {
-        var res = $http.post('/api/courses', $scope.course);
-        res.success(function(data, status, headers, config) {
+
+        $scope.isSaving = true;
+        $scope.submitPromise = $http.post('/api/courses', $scope.course);
+        $scope.submitPromise.success(function(data, status, headers, config) {
             $scope.message = data;
         });
-        res.error(function(data, status, headers, config) {
+        $scope.submitPromise.error(function(data, status, headers, config) {
             alert( "failure message: " + JSON.stringify({data: data}));
+            $scope.isSaving = false;
         });
     }
 
 }]);
+
+
 
 courseCreateApp.controller('DatePickController', ['$scope', '$http', function ($scope, $http) {
 

@@ -1,0 +1,81 @@
+
+html, body {
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    background-color: #f0f0f0;
+}
+
+#videos {
+    position: absolute;
+    left: 20%;
+    top: 0;
+    bottom: 10%;
+    right: 10%;
+    overflow: 0;
+}
+
+#videos video {
+    display: inline-block;
+    width: 30%;
+}
+
+#uploadvideo {
+
+    left: 100%;
+    top: 60%;
+    bottom: 30%;
+    right: 10%;
+}
+
+#recordvideo {
+    left: 80%;
+    top: 80%;
+    bottom: 10%;
+    right: 10%;
+}
+
+#chat {
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 30%;
+    border: 1px solid #0f0f0f;
+}
+#chat .msgIpt, #chat .fileIpt{
+    position: absolute;
+    left: 0;
+    width: 80%;
+}
+#chat .sendBtn, #chat .sharescreen {
+    position: absolute;
+    left: 80%;
+    width: 20%;
+}
+#chat .msgIpt,#chat .sendBtn {
+    bottom: 0;
+}
+#chat .sharescreen {
+    bottom: 30px;
+}
+#chat .msgs {
+    padding: 5%;
+}
+#chat .msgs p{
+    margin: 0.3em 0;
+}
+
+#files {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    width: 20%;
+}
+#files .name {
+}
+#files .percent {
+    font-weight: bold;
+    text-decoration: none
+}
