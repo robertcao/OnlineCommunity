@@ -1,11 +1,35 @@
 
-
+.above-chat-button {
+    -moz-box-shadow:inset 0px 39px 0px -24px #6C5775;
+    -webkit-box-shadow:inset 0px 39px 0px -24px #6C5775;
+    box-shadow:inset 0px 39px 0px -24px #6C5775;
+    background-color:#6C5775;
+    -moz-border-radius:4px;
+    -webkit-border-radius:4px;
+    border-radius:4px;
+    border:1px solid #ffffff;
+    display:inline-block;
+    cursor:pointer;
+    color:#ffffff;
+    font-family:Arial;
+    font-size:15px;
+    padding:6px 15px;
+    text-decoration:none;
+    text-shadow:0px 1px 0px #6C5775;
+}
+.above-chat-button:hover {
+    background-color:#6C5775;
+}
+.above-chat-button:active {
+    position:relative;
+    top:1px;
+}
 
 
 .chat-container {
 
     width: 470%;
-    height: 200%;
+    height: 500%;
     margin: 0 auto;
     padding-top: 10%;
 
