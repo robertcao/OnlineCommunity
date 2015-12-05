@@ -13,6 +13,9 @@ Free for personal and commercial use under the CCA 3.0 license (html5up.net/lice
     <link rel="stylesheet" href="@routes.Assets.at("assets/css/main.css")" />
     <link rel="stylesheet" href="@routes.Assets.at("assets/css/style.css")" />
     <link rel="stylesheet" href="@routes.Assets.at("assets/css/video.css")" />
+    <link rel="stylesheet" href="@routes.Assets.at("assets/css/chat_app.css")" />
+    <link rel="stylesheet" href="@routes.Assets.at("assets/css/chat_theme.css")" />
+    <link rel="stylesheet" href="@routes.Assets.at("assets/css/chat_basic.css")" />
       <!--[if lte IE 8]><link rel="stylesheet" href="@routes.Assets.at("assets/css/ie8.css")" /><![endif]-->
       <!-- angularJS -->
     <link href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css" rel="stylesheet">
@@ -24,91 +27,88 @@ Free for personal and commercial use under the CCA 3.0 license (html5up.net/lice
     <script src="@routes.Assets.at("assets/js/video_client.js")"></script>
     <script src="@routes.Assets.at("assets/js/RecordRTC.js")"></script>
     <script src="@routes.Assets.at("assets/js/video.js")"></script>
+    <script src="@routes.Assets.at("assets/js/lodash.js")"></script>
+    <script src="@routes.Assets.at("assets/js/chatindex.js")"></script>
+    <script src="@routes.Assets.at("assets/js/chatapp.js")"></script>
+
 
   </head>
-  <body class="no-sidebar">
-    <div id="page-wrapper">
+  <body  class="left-sidebar" ng-app="chatApp">
+<div id="page-wrapper">
+    <div id="header">
 
-        <!-- Header -->
-      <div id="header">
-
-          <!-- Inner -->
-        <div class="inner">
-          <header>
-            <h1><a href="index.html" id="logo">Online Community</a></h1>
-          </header>
-        </div>
-
-          <!-- Nav -->
-        <nav id="nav">
-          <ul>
-            <li><a href="index.html">Home</a></li>
-            <li>
-              <a href="#">Catagory</a>
-              <ul>
-                <li><a href="#">Art+Design </a></li>
-                <li><a href="#">Computer</a></li>
-                <li><a href="#">Finance</a></li>
-                <li><a href="#">Life Skill</a></li>
-                <li><a href="#">Language</a></li>
-                <li><a href="#">Music</a></li>
-                <li><a href="#">Math+Science</a></li>
-                <li><a href="#">Sport</a></li>
-              </ul>
-            </li>
-            <li><a href="/profile">Course</a></li>
-            <li><a href="right-sidebar.html">Profile</a></li>
-            <li><a href="no-sidebar.html">Logout</a></li>
-          </ul>
-        </nav>
-
+        <!-- Inner -->
+      <div class="inner">
+        <header>
+          <h1><a href="index.html" id="logo">Online Community</a></h1>
+        </header>
       </div>
 
-        <!-- Main -->
-      <div class="wrapper style1">
+        <!-- Nav -->
+      <nav id="nav">
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li>
+            <a href="#">Catagory</a>
+            <ul>
+              <li><a href="#">Art+Design </a></li>
+              <li><a href="#">Computer</a></li>
+              <li><a href="#">Finance</a></li>
+              <li><a href="#">Life Skill</a></li>
+              <li><a href="#">Language</a></li>
+              <li><a href="#">Music</a></li>
+              <li><a href="#">Math+Science</a></li>
+              <li><a href="#">Sport</a></li>
+            </ul>
+          </li>
+          <li><a href="/coursecreate">Course</a></li>
+          <li><a href="right-sidebar.html">Profile</a></li>
+          <li><a href="no-sidebar.html">Logout</a></li>
+        </ul>
+      </nav>
 
-        <div class="container">
-          <article id="main" class="special">
-            <header>
-              <h2><a href="#">MongoDB Tutorial</a></h2>
-              <p>
-									MongoDB Tutorial For Beginners
-              </p>
-            </header>
-            <a href="#" class="image featured"><img src="@routes.Assets.at("images/pic06.jpg")" alt="" /></a>
-          </article>
-          <hr />
-          <div class="row">
-            <article class="4u 12u(mobile) special">
-              <a href="#" class="image featured"><img src="@routes.Assets.at("images/pic07.jpg")" alt="" /></a>
-            </article>
-            <article class="4u 12u(mobile) special">
-              <a href="#" class="image featured"><img src="@routes.Assets.at("images/pic08.jpg")" alt="" /></a>
-            </article>
-            <article class="4u 12u(mobile) special">
-              <a href="#" class="image featured"><img src="@routes.Assets.at("images/pic09.jpg")" alt="" /></a>
-            </article>
-          </div>
-        </div>
+    </div>
+    <div class="wrapper style1">
+      <div class="container">
+          <div class="row 200%">
+            <div class="4u 12u(mobile)" id="sidebar">
+              <br/>
+              <br/>
 
-      </div>
+                      <div class="chat-container" ng-controller="Shell as vm">
+                        <irontec-simple-chat
+                        messages="vm.messages"
+                        username="vm.username"
+                        input-placeholder-text="You can write here"
+                        submit-button-text="Send your message"
+                        title="Online Community Realtime Chat"
+                        theme="material"
+                        submit-function="vm.sendMessage"
+                        visible="true">
+                        </irontec-simple-chat>
+                      </div>
+            </div>
+            <div class="8u 12u(mobile) important(mobile)" id="content">
+              <h1> Course Video</h1>
 
-        <!-- Footer -->
-      <div id="footer">
-        <div class="container">
-          <div class="row">
-
-              <!-- Copyright -->
-            <div class="copyright">
-              <ul class="menu">
-                <li>&copy; Untitled. All rights reserved.</li><li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
-              </ul>
+              <iframe src="http://www.youtube.com/embed/W7qWa52k-nE"
+              width="560" height="415" frameborder="0" allowfullscreen></iframe>
+              <div id="teacherVideo">
+              <video id="teacherView" autoplay></video>
             </div>
 
-          </div>
+              <div id="studentVideo">
 
-        </div>
+              </div>
+
+
+
+
+            </div>
+          </div>
       </div>
+    </div>
+</div>
 
         <!-- Scripts -->
       <script src="@routes.Assets.at("assets/js/jquery.min.js")"></script>
@@ -119,7 +119,7 @@ Free for personal and commercial use under the CCA 3.0 license (html5up.net/lice
       <script src="@routes.Assets.at("assets/js/util.js")"></script>
         <!--[if lte IE 8]><script src="@routes.Assets.at("assets/js/ie/respond.min.js")" /><![endif]-->
       <script src="@routes.Assets.at("assets/js/main.js")"></script>
-      </div>
+
 
   </body>
 </html>

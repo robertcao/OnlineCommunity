@@ -153,6 +153,10 @@ public class User_Controller extends Controller {
         }
     }
 
+    public static Result videohistory() {
+        return ok(videohistory.render());
+    }
+
 
     // Login Form
     public static class Login {

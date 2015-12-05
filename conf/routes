@@ -23,6 +23,7 @@ GET         /feedback            controllers.User_Controller.feedback()
 GET         /quiz                controllers.User_Controller.quiz()
 GET         /teaching            controllers.User_Controller.teaching()
 GET         /videotime           controllers.User_Controller.videotime()
+GET         /videohistory        controllers.User_Controller.videohistory()
 
 # Course Management Module
 GET         /coursecreate        controllers.CourseController.createIndex()
