@@ -154,10 +154,6 @@ public class User_Controller extends Controller {
         return ok(videohistory.render());
     }
 
-    public static Result forum() {
-        return ok(forum.render());
-    }
-
     public static Result learning() {
         return ok(learning.render());
     }
