@@ -8,6 +8,7 @@ public class Secured extends Security.Authenticator {
 
 //    @Override
     public String getUsername(Context ctx) {
+        System.out.println("Current Session Email ====> " + ctx.session().get("email"));
         return ctx.session().get("email");
     }
 

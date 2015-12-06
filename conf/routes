@@ -3,36 +3,37 @@
 # ~~~~
 
 # Home page
-GET         /                         controllers.Application.index
-GET         /index.html               controllers.Application.index
-GET         /products                 controllers.Application.listProducts
+GET         /                            controllers.Application.index
+GET         /index.html                  controllers.Application.index
+GET         /products                    controllers.Application.listProducts
 
 # User Management Module
-GET         /signup                   controllers.User_Controller.signupform()
-POST        /signup                   controllers.User_Controller.signup()
-GET         /login                    controllers.User_Controller.login()
-POST        /login                    controllers.User_Controller.authenticate()
-GET         /api/user                 controllers.User_Controller.currentUser()
+GET         /signup                      controllers.User_Controller.signupform()
+POST        /signup                      controllers.User_Controller.signup()
+GET         /login                       controllers.User_Controller.login()
+POST        /login                       controllers.User_Controller.authenticate()
+GET         /api/user                    controllers.User_Controller.currentUser()
 
 
-GET         /profile                  controllers.User_Controller.profile()
-GET         /course                   controllers.User_Controller.course()
-GET         /logout                   controllers.User_Controller.logout()
-GET         /listAllUsers             controllers.User_Controller.listAll()
-GET         /calendar                 controllers.User_Controller.calendar()
-GET         /feedback                 controllers.User_Controller.feedback()
-GET         /quiz                     controllers.User_Controller.quiz()
-GET         /teaching                 controllers.User_Controller.teaching()
-GET         /videotime                controllers.User_Controller.videotime()
-GET         /videohistory             controllers.User_Controller.videohistory()
+
+GET         /profile                     controllers.User_Controller.profile()
+GET         /course                      controllers.User_Controller.course()
+GET         /logout                      controllers.User_Controller.logout()
+GET         /listAllUsers                controllers.User_Controller.listAll()
+GET         /calendar                    controllers.User_Controller.calendar()
+GET         /feedback                    controllers.User_Controller.feedback()
+GET         /quiz                        controllers.User_Controller.quiz()
+GET         /teaching                    controllers.User_Controller.teaching()
+GET         /videotime                   controllers.User_Controller.videotime()
+GET         /videohistory                controllers.User_Controller.videohistory()
 
 # Course Management Module
-GET         /coursecreate             controllers.CourseController.createIndex()
-GET         /api/courses              controllers.CourseController.listCourses()
-POST        /api/courses              controllers.CourseController.create()
-GET         /api/course/:courseid     controllers.CourseController.getCourse(courseid: String)
+GET         /coursecreate                controllers.CourseController.createIndex()
+GET         /api/courses                 controllers.CourseController.listCourses()
+POST        /api/courses                 controllers.CourseController.create()
+GET         /api/course/:courseid        controllers.CourseController.getCourse(courseid: String)
 
 
 # Map static resources from the /public folder to the /assets URL path
-GET         /assets/*file             controllers.Assets.at(path="/public", file)
-GET         /angular-busy.html        controllers.Assets.at(path="/public", file="/html/angular-busy.html")
+GET         /assets/*file                controllers.Assets.at(path="/public", file)
+GET         /angular-busy.html           controllers.Assets.at(path="/public", file="/html/angular-busy.html")

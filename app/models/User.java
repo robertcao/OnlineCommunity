@@ -85,6 +85,13 @@ public class User extends Model {
     public static void create(User user) {
         // set current time
         user.created_at = currentTime();
+
+        // set default image
+        if (user.gender == "female")
+            user.thumbnail_id = "female_default.jpg";
+        else
+            user.thumbnail_id = "male_default.jpg";
+
         // save to DB
         user.save();
     }

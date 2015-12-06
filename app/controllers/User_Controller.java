@@ -88,18 +88,21 @@ public class User_Controller extends Controller {
         } else {
             session().clear();
             session("email", loginForm.get().email);
-            System.out.println("session: " + session("email"));
+            System.out.println("session ====> " + session("email"));
 
             System.out.println("Query:" + User.findByEmail.where().eq("email", loginForm.get().email));
             List<User> userList = User.findByEmail.where().eq("email", loginForm.get().email).findList();
 
-            System.out.println("User: " + userList);
+            System.out.println("User ====> " + userList);
 
             if (userList != null) {
                 User user = userList.get(0);
 
                 List<Instructor> instructorList = Instructor.findByName.where().eq("name", user.user_name).findList();
-                Instructor instructor = instructorList.get(0);
+                System.out.println("Instructor ====> " + instructorList);
+                Instructor instructor = new Instructor();
+                if (instructorList.size() != 0)
+                    instructor = instructorList.get(0);
 
                 return ok(profile.render(user, instructor));
             } else {
@@ -117,7 +120,9 @@ public class User_Controller extends Controller {
             User user = userList.get(0);
 
             List<Instructor> instructorList = Instructor.findByName.where().eq("name", user.user_name).findList();
-            Instructor instructor = instructorList.get(0);
+            Instructor instructor = new Instructor();
+            if (instructorList.size() != 0)
+                instructor = instructorList.get(0);
 
             return ok(profile.render(user, instructor));
         } else {
@@ -139,6 +144,8 @@ public class User_Controller extends Controller {
     // to page: /logout
     public static Result logout() {
         session().clear();
+
+        System.out.println("Session: " + session());
         flash("success", "You have been logged out, redirect to index page.");
         return redirect("/");
     }
