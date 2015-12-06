@@ -50,4 +50,9 @@ public class CourseController extends Controller{
     public static Result createIndex() {
         return ok(coursecreate.render());
     }
+
+    public static Result getCourse(String courseid) {
+        Course course = Course.findById.byId(Long.valueOf(courseid));
+        return ok(Json.toJson(course));
+    }
 }

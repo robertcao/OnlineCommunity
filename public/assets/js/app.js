@@ -15,26 +15,36 @@ profileApp.controller('ProfileController', ['$scope', '$http', function ($scope,
 
 var courseApp = angular.module('courseApp', ['ui.bootstrap']);
 
-courseApp.controller('CourseController', ['$scope', '$http', function ($scope, $http) {
+courseApp.controller('CourseController', ['$scope', '$http', '$location', function ($scope, $http, $location) {
     $scope.message = "inside course";
-    $http.get("/products").then(function (response) {
-        $scope.products = response.data;
-    });
+    var courseIdParam = $location.search();
+    //alert(JSON.stringify(courseIdParam));
+    $scope.courseId = courseIdParam.courseId;
+    if ($scope.courseId != undefined) {
+         $http.get("/api/course/" + $scope.courseId).then(function (response) {
+             $scope.courseDetail = response.data;
+            });
+    }
 
     $scope.selected = '';
-    $scope.states = ['Alabama', 'Alaska', 'Arizona', 'Arkansas', 'California', 'Colorado', 'Connecticut', 'Delaware', 'Florida', 'Georgia',
-        'Hawaii', 'Idaho', 'Illinois', 'Indiana', 'Iowa', 'Kansas', 'Kentucky', 'Louisiana', 'Maine', 'Maryland', 'Massachusetts', 'Michigan',
-        'Minnesota', 'Mississippi', 'Missouri', 'Montana', 'Nebraska', 'Nevada', 'New Hampshire', 'New Jersey', 'New Mexico', 'New York', 'North Dakota',
-        'North Carolina', 'Ohio', 'Oklahoma', 'Oregon', 'Pennsylvania', 'Rhode Island', 'South Carolina', 'South Dakota', 'Tennessee', 'Texas', 'Utah',
-        'Vermont', 'Virginia', 'Washington', 'West Virginia', 'Wisconsin', 'Wyoming'];
-    $http.get("/api/courses").then(function (response) {
-        $scope.courses = response.data; //array of courses
-    });
-
-
-
 }]);
 
+courseApp.controller('ratingController', function ($scope) {
+    $scope.courseRating = 5;
+    $scope.courseRatingMax = 5;
+    $scope.courseRatingIsReadOnly = false;
+        $scope.hoveringOver = function(value) {
+            $scope.overStar = value;
+            $scope.percent = 100 * (value / $scope.max);
+        };
+        $scope.ratingStates = [
+            {stateOn: 'glyphicon-ok-sign', stateOff: 'glyphicon-ok-circle'},
+            {stateOn: 'glyphicon-star', stateOff: 'glyphicon-star-empty'},
+            {stateOn: 'glyphicon-heart', stateOff: 'glyphicon-ban-circle'},
+            {stateOn: 'glyphicon-heart'},
+            {stateOff: 'glyphicon-off'}
+        ];
+    });
 
 var courseCreateApp = angular.module('courseCreateApp', ['ngAnimate', 'ui.bootstrap', 'cgBusy']);
 

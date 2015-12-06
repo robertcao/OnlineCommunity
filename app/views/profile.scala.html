@@ -1,3 +1,5 @@
+@(user: User, instructor: Instructor)
+
 <!DOCTYPE HTML>
 <!--
 	Helios by HTML5 UP
@@ -32,7 +34,7 @@ Free for personal and commercial use under the CCA 3.0 license (html5up.net/lice
 					<!-- Inner -->
 				<div class="inner">
 					<header>
-						<h1><a href="index.html" id="logo">Online Community</a></h1>
+						<h1>Welcome to Online Community, @user.first_name </h1>
 					</header>
 				</div>
 
@@ -54,8 +56,8 @@ Free for personal and commercial use under the CCA 3.0 license (html5up.net/lice
 							</ul>
 						</li>
 						<li><a href="/coursecreate">Course</a></li>
-						<li><a href="right-sidebar.html">Profile</a></li>
-						<li><a href="no-sidebar.html">Logout</a></li>
+						<li><a href="profile">Profile</a></li>
+						<li><a href="/">Logout</a></li>
 					</ul>
 				</nav>
 
@@ -70,7 +72,7 @@ Free for personal and commercial use under the CCA 3.0 license (html5up.net/lice
 							<br/>
 							<section>
 								<header>
-									<h3><a href="#">Taught</a></h3>
+									<h3><a href="#">Teaching Courses</a></h3>
 								</header>
 
 								<div class="row 50%" ng-repeat="course in courses">
@@ -92,7 +94,7 @@ Free for personal and commercial use under the CCA 3.0 license (html5up.net/lice
 							<br/>
 							<section>
 								<header>
-									<h3><a href="#">Learned</a></h3>
+									<h3><a href="#">Learning Courses</a></h3>
 								</header>
 								<div class="row 50%">
 									<div class="4u">
@@ -138,18 +140,12 @@ Free for personal and commercial use under the CCA 3.0 license (html5up.net/lice
 						</div>
 						<div class="8u 12u(mobile) important(mobile)" id="content">
 							<article id="main">
-								<header>
-									<h2><a href="#">Shaun Verch</a></h2>
-									<p>
-										</p>
-								</header>
-								<a href="#" class="image featured"><img src="@routes.Assets.at("images/shaun.jpg")" alt="" /></a>
-								<p>
-										Sharing knowledge is something that I am very passionate about. I studied Operating Systems as an undergraduate at Brown University, and while I was there I often worked a TA for Math and Computer Science classes. I started working for 10gen after I graduated in 2012, and I’m very excited to teach, to learn and to get more involved in the open source community and the community around MongoDB.
-								</p>
-								<p>
-		Formerly a kernel engineer at MongoDB, Shaun is now a software engineer at URX. In addition to extensive experience with C++ he is also a Node.js enthusiast. A graduate of Brown University, Shaun believes in the power of education to change the world.
-								</p>
+								<img height="300" width="300" src="@routes.Assets.at("/images/" + user.thumbnail_id)" alt="" />
+
+								<h4>Self Introduction</h4>
+								<p>@instructor.description</p>
+
+								<h4>Teaching Rate: @instructor.rating</h4>
 								<form id="ratingsForm">
 									<div class="stars">
 										<input type="radio" name="star" class="star-1" id="star-1" />
@@ -164,7 +160,6 @@ Free for personal and commercial use under the CCA 3.0 license (html5up.net/lice
 										<label class="star-5" for="star-5">5</label>
 										<span></span>
 									</div>
-
 								</form>
 
 

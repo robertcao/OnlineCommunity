@@ -33,7 +33,7 @@ public class CourseControllerTest {
                 currentUser.first_name = "John";
                 currentUser.last_name = "Merdock";
                 currentUser.email = "John.Merdock@gmail.com";
-                currentUser.gender = 0;
+                currentUser.gender = "male";
                 currentUser.password = "123456";
 
                 course.setStartDate(new Date());

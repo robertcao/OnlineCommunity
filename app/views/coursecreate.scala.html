@@ -21,9 +21,7 @@
     <div id="page-wrapper">
 
         <!-- Header -->
-            <!-- Header -->
         <div id="header">
-
                 <!-- Inner -->
             <div class="inner">
                 <header>
@@ -56,28 +54,31 @@
 
         </div>
 
-
-
         <!-- Main -->
       <div class="wrapper style1">
 
         <div class="container" >
           <article id="main" class="special">
             <header>
-                <h1>Course Creation</h1>
+                <h1>Create Your Course</h1>
                 <br/>
                 <div cg-busy="submitPromise">
                 <div class="course-card" >
                 <ng-form class="contact-form" name="courseForm" >
                   <fieldset ng-disabled="isSaving">
-                  <input type="text" ng-required="true" ng-model="course.courseName" placeholder="course name"/>
+                  <input type="text" ng-required="true" ng-model="course.courseName" placeholder="Course name"/>
                   <br/>
-                    <input type="text" name="course.imageURL" placeholder="course image URL"/>
-                    <br/>
-                    <textarea rows="4" cols="50" name="comment" form="courseForm">Enter Course description here...</textarea>
-                    <br/>
-
-
+                      <input type="text" ng-required="true" ng-model="course.category" placeholder="Course category"/>
+                  <br/>
+                      <input type="text" ng-required="true" ng-model="course.language" placeholder="Course language"/>
+                  <br/>
+                      <input type="text" ng-required="true" ng-model="course.thumbnail_id" placeholder="course image URL"/>
+                  <br/>
+                      <input type="text" ng-required="true" ng-model="course.workload" placeholder="Course hours"/>
+                  <br/>
+                      <input type="text" ng-required="true" ng-model="course.price" placeholder="Course price"/>
+                  <br/>
+                      <textarea rows="4" cols="50" ng-required="true" ng-model="course.description" placeholder="Enter course description here..."></textarea>
 
                     <br/>
                     <div class="form-group">
