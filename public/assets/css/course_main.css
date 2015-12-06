@@ -60,3 +60,17 @@
     border-bottom: 3px solid #ba382c;
     text-shadow: 0 -1px 0 #8a3030;
 }
+
+.glyphicon-star{
+
+    color: #ffe023;
+    font-size:50px;
+    text-shadow: 3px 3px #87760e;
+
+}
+
+.glyphicon-star-empty {
+    color:yellow;
+    font-size:50px;
+    text-shadow: 3px 3px #87760e;
+}
