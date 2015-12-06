@@ -75,7 +75,7 @@ Free for personal and commercial use under the CCA 3.0 license (html5up.net/lice
 
 								<div class="row 50%" ng-repeat="course in courses">
 									<div class="4u">
-										<img class="image fit" ng-src="@routes.Assets.at("images/pic10.jpg")"/>
+										<a href="/course#?courseId={{course.id}}" class="image fit"><img ng-src="@routes.Assets.at("images/pic10.jpg")"/></a>
 									</div>
 									<div class="8u">
 										<h4>{{course.courseName}} </h4>

@@ -46,7 +46,7 @@
 								<li><a href="#">Sport</a></li>
 							</ul>
 						</li>
-						<li><a href="/course">Course</a></li>
+						<li><a href="/coursecreate">Course</a></li>
 						<li><a href="/profile">Profile</a></li>
 						<li><a href="/">Logout</a></li>
 					</ul>
@@ -60,7 +60,7 @@
 					<div class="row 200%">
 						<div class="4u 12u(mobile)" id="sidebar">
 							<hr class="first" />
-							<section id="course-title" contenteditable="true">
+							<section id="course-title">
 								<header>
 									<h3><a  href="#" >{{courseDetail.courseName}}</a></h3>
 								</header>
@@ -75,9 +75,14 @@ Learn Node.js to create dynamic, scalable network applications using the powerfu
 								</li>
 							</section>
 							<footer>
-								<p>
-										Pick a Date <input type="text" id="datepicker">
-										</p>
+								<h4>Pick a Date</h4>
+
+								<p class="input-group" ng-controller="SignUpDatePickController">
+									<input type="text" class="form-control" datepicker-popup="{{format}}" ng-model="dt" is-open="opened" min-date="minDate" max-date="'2015-06-22'" datepicker-options="dateOptions" date-disabled="disabled(date, mode)" ng-required="true" close-text="Close" />
+									<span class="input-group-btn">
+										<button type="button" class="btn btn-default" ng-click="open($event)"><i class="glyphicon glyphicon-calendar"></i></button>
+									</span>
+								</p>
 								<a href="#" class="button">Take This Course</a>
 							</footer>
 
@@ -92,14 +97,11 @@ Learn Node.js to create dynamic, scalable network applications using the powerfu
 										</p>
 								</header>
 								<a href="#" class="image featured"><img src="@routes.Assets.at("images/pic06.jpg")" alt="" /></a>
-								<p>
 									<div ng-controller="ratingController">
 									<rating ng-model="courseRating" max="courseRatingMax" readonly="courseRatingIsReadOnly" on-hover="hoveringOver(value)" on-leave="overStar = null"></rating>
 									<span class="label" ng-class="{'label-warning': percent<30, 'label-info': percent>=30 && percent<70, 'label-success': percent>=70}" ng-show="overStar && !courseRatingIsReadOnly">{{percent}}%</span>
 									</div>
-
-								</p>
-								<section id="course-description" contenteditable="true">
+								<section id="course-description" >
 									<header>
 										<h3>Course Description</h3>
 										<h4>

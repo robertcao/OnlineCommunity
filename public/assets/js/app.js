@@ -48,20 +48,56 @@ courseApp.controller('ratingController', function ($scope) {
     ];
 });
 
+courseApp.controller('SignUpDatePickController', ['$scope', '$http', function ($scope, $http) {
+
+    $scope.today = function() {
+        $scope.dt = new Date();
+    };
+    $scope.today();
+
+    $scope.clear = function () {
+        $scope.dt = null;
+    };
+
+    // Disable weekend selection
+    $scope.disabled = function(date, mode) {
+        return ( mode === 'day' && ( date.getDay() === 0 || date.getDay() === 6 ) );
+    };
+
+    $scope.toggleMin = function() {
+        $scope.minDate = $scope.minDate ? null : new Date();
+    };
+    $scope.toggleMin();
+
+    $scope.open = function($event) {
+        $event.preventDefault();
+        $event.stopPropagation();
+
+        $scope.opened = true;
+    };
+
+    $scope.dateOptions = {
+        formatYear: 'yy',
+        startingDay: 1
+    };
+
+    $scope.formats = ['dd-MMMM-yyyy', 'yyyy/MM/dd', 'dd.MM.yyyy', 'shortDate'];
+    $scope.format = $scope.formats[0];
+}]);
 
 
 
 
 var courseCreateApp = angular.module('courseCreateApp', ['ngAnimate', 'ui.bootstrap', 'cgBusy']);
 
-courseCreateApp.controller('CourseCreateController', ['$scope', '$http', function ($scope, $http) {
+courseCreateApp.controller('CourseCreateController', ['$scope', '$http', '$location', '$window', function ($scope, $http, $location, $window) {
 
     $scope.course = {};
     $scope.isSaving = undefined;
 
     $scope.currentUser = {};
     $http.get("/api/user").then(function (response) {
-        $scope.currentUser = response.data; //array of courses
+        $scope.currentUser = response.data;
         $scope.course.instructor = $scope.currentUser;
     });
 
@@ -71,6 +107,8 @@ courseCreateApp.controller('CourseCreateController', ['$scope', '$http', functio
         $scope.submitPromise = $http.post('/api/courses', $scope.course);
         $scope.submitPromise.success(function(data, status, headers, config) {
             $scope.message = data;
+            $window.location.href = '/course#?courseId=' + data.id;
+
         });
         $scope.submitPromise.error(function(data, status, headers, config) {
             alert( "failure message: " + JSON.stringify({data: data}));

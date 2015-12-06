@@ -44,7 +44,7 @@ public class CourseController extends Controller{
         System.out.println("received json=" + json.toString());
         Course course = Json.fromJson(json, Course.class);
         course.save();
-        return ok(course.getId() + " " + course.getCourseName());
+        return ok(Json.toJson(course));
     }
 
     public static Result createIndex() {
