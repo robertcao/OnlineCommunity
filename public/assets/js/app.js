@@ -28,6 +28,28 @@ courseApp.controller('CourseController', ['$scope', '$http', '$location', functi
 
 }]);
 
+courseApp.controller('DropdownController', ['$scope', function ($scope) {
+    $scope.videoButtonItems = [
+        'Record',
+        'upload',
+        'Share Desktop'
+    ];
+
+    $scope.status = {
+        isopen: false
+    };
+
+    $scope.toggled = function(open) {
+        $log.log('Dropdown is now: ', open);
+    };
+
+    $scope.toggleDropdown = function($event) {
+        $event.preventDefault();
+        $event.stopPropagation();
+        $scope.status.isopen = !$scope.status.isopen;
+    };
+}]);
+
 
 courseApp.controller('ratingController', function ($scope) {
     $scope.courseRating = 5;
@@ -200,3 +222,8 @@ courseCreateApp.controller('TimePickController', ['$scope', '$http', function ($
     };
 
 }]);
+
+
+
+
+

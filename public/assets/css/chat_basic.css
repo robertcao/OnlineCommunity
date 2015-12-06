@@ -28,9 +28,40 @@
 
 .chat-container {
 
-    width: 470%;
-    height: 500%;
-    margin: 0 auto;
-    padding-top: 10%;
+    width: 100%;
+    height: 100%;
+
 
 }
+
+
+#mainvideo {
+    display: flex;
+}
+#actionbutton {
+    width: 210px;
+    /* background: lightblue;*/
+    /* Just so it's visible */
+}
+#instructorvideo {
+    flex: 1;
+    /* Grow to rest of container */
+    /*background: lightgreen; */
+    /* Just so it's visible */
+}
+
+#takeactionbutton {
+    width:  45%;
+    height: 45%;
+    background-color: #6C5775;
+}
+ul#actions
+{
+    display:none;
+}
+.hover_action:hover ul#actions
+{
+    display: block;
+}
+
+

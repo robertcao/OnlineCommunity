@@ -119,9 +119,6 @@ public class User_Controller extends Controller {
         return redirect("/");
     }
 
-    public static Result calendar() {
-        return ok(calendar.render());
-    }
 
     public static Result feedback() {
         return ok(feedback.render());
@@ -155,6 +152,14 @@ public class User_Controller extends Controller {
 
     public static Result videohistory() {
         return ok(videohistory.render());
+    }
+
+    public static Result forum() {
+        return ok(forum.render());
+    }
+
+    public static Result learning() {
+        return ok(learning.render());
     }
 
 
