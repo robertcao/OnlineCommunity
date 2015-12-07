@@ -7,10 +7,18 @@ Free for personal and commercial use under the CCA 3.0 license (html5up.net/lice
 		<title>Welcome to Online Community</title>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<link href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css" rel="stylesheet">
 		<link rel="stylesheet" href="@routes.Assets.at("assets/css/main.css")" />
 		<link rel="stylesheet" href="@routes.Assets.at("assets/css/style.css")" />
+			<!--[if lte IE 8]><link rel="stylesheet" href="@routes.Assets.at("assets/css/ie8.css")" /><![endif]-->
+			<!-- angularJS -->
+		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.15/angular.min.js"></script>
+		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.15/angular-route.min.js"></script>
+		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.15/angular-animate.min.js"></script>
+		<script src="@routes.Assets.at("assets/js/ui-bootstrap-tpls-0.12.1.min.js")"></script>
+		<script src="@routes.Assets.at("assets/js/main_index.js")"></script>
 	</head>
-	<body class="homepage">
+	<body class="homepage" ng-app="mainIndexApp">
 		<div id="page-wrapper">
 
 				<!-- Header -->
@@ -61,10 +69,46 @@ Free for personal and commercial use under the CCA 3.0 license (html5up.net/lice
 			</div>
 
 				<!-- Banner -->
-			<section id="banner">
+			<section id="banner" ng-controller="mainSearchController">
 				<header>
-					<h2>Search Bar HERE!? </h2>
+					<h4>Search for courses</h4>
+
 				</header>
+
+				<pre>{{asyncSelected | json}}</pre>
+				<input type="text" ng-model="asyncSelected" placeholder="Search for a course by name"
+				typeahead="courseName for courseName in typeahead($viewValue)"
+				typeahead-on-select="queryCourse($item)"
+				typeahead-loading="loadingCourses"
+				class="form-control input-lg" />
+				<i ng-show="loadingCourses" class="glyphicon glyphicon-refresh"></i>
+				<article class="4u 12u(mobile) special" ng-show="selectedCourse">
+					<a href="#" class="image featured"><img ng-src="{{selectedCourse.thumbnail_id}}" alt="" /></a>
+					<header>
+						<h3><a href="#">{{selectedCourse.courseName}}</a></h3>
+					</header>
+					<p>
+						{{selectedCourse.description}}
+					</p>
+					<form id="ratingsForm">
+						<div class="stars">
+							<input type="radio" name="star" class="star-1" id="star-1" />
+							<label class="star-1" for="star-1">1</label>
+							<input type="radio" name="star" class="star-2" id="star-2" />
+							<label class="star-2" for="star-2">2</label>
+							<input type="radio" name="star" class="star-3" id="star-3" />
+							<label class="star-3" for="star-3">3</label>
+							<input type="radio" name="star" class="star-4" id="star-4" />
+							<label class="star-4" for="star-4">4</label>
+							<input type="radio" name="star" class="star-5" id="star-5" />
+							<label class="star-5" for="star-5">5</label>
+							<span></span>
+						</div>
+					</form>
+				</article>
+
+
+
 			</section>
 
 		</div>

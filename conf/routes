@@ -30,6 +30,7 @@ GET         /coursecreate         controllers.CourseController.createIndex()
 GET         /lessoncreate         controllers.CourseController.createLesson()
 GET         /api/courses          controllers.CourseController.listCourses()
 GET   /api/courses/:instructorid  controllers.CourseController.getCourses(instructorid: String)
+GET   /api/coursesbyname/:name    controllers.CourseController.getCourseByName(name: String)
 POST        /api/courses          controllers.CourseController.create()
 GET         /api/course/:courseid controllers.CourseController.getCourse(courseid: String)
 

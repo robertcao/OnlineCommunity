@@ -38,7 +38,7 @@ public class CourseControllerTest {
 
                 course.setStartDate(new Date());
                 course.setEndDate(new Date());
-                course.setInstructor(currentUser);
+                course.setInstructor(currentUser.user_name);
 
                 ObjectMapper mapper = new ObjectMapper();
                 mapper.enable(SerializationFeature.INDENT_OUTPUT);

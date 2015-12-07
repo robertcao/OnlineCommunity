@@ -79,4 +79,13 @@ public class CourseController extends Controller{
         }
         return ok(Json.toJson(jsonNodes));
     }
+
+    public static Result getCourseByName(String name) {
+        List<Course> courses = Course.findByName.where().like("name", "%" + name +"%").findList();
+        List<JsonNode> jsonNodes = Lists.newArrayList();
+        for (Course course : courses) {
+            jsonNodes.add(Json.toJson(course));
+        }
+        return ok(Json.toJson(jsonNodes));
+    }
 }
