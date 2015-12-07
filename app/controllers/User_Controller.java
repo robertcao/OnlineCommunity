@@ -15,6 +15,7 @@ import com.avaje.ebean.ExpressionList;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
+import models.Instructor;
 import models.User;
 import play.Logger;
 import play.data.*;
@@ -86,16 +87,44 @@ public class User_Controller extends Controller {
             return badRequest(login.render(loginForm));
         } else {
             session().clear();
-            session("user_name", loginForm.get().user_name);
-            System.out.println("session: " + session("user_name"));
-            return ok(profile.render());
+            session("email", loginForm.get().email);
+            System.out.println("session ====> " + session("email"));
+
+            System.out.println("Query:" + User.findByEmail.where().eq("email", loginForm.get().email));
+            List<User> userList = User.findByEmail.where().eq("email", loginForm.get().email).findList();
+
+            System.out.println("User ====> " + userList);
+
+            if (userList != null) {
+                User user = userList.get(0);
+
+                List<Instructor> instructorList = Instructor.findByName.where().eq("name", user.user_name).findList();
+                System.out.println("Instructor ====> " + instructorList);
+                Instructor instructor = new Instructor();
+                if (instructorList.size() != 0)
+                    instructor = instructorList.get(0);
+
+                return ok(profile.render(user, instructor));
+            } else {
+                return redirect("/login");
+
+            }
         }
     }
 
     @Security.Authenticated(Secured.class)
     public static Result profile() {
-        if (User.find.where().eq("user_name", request().username()) != null) {
-            return ok(profile.render()); //TODO load the user's profile page,
+        List<User> userList = User.findByEmail.where().eq("email", request().username()).findList();
+
+        if (userList != null) {
+            User user = userList.get(0);
+
+            List<Instructor> instructorList = Instructor.findByName.where().eq("name", user.user_name).findList();
+            Instructor instructor = new Instructor();
+            if (instructorList.size() != 0)
+                instructor = instructorList.get(0);
+
+            return ok(profile.render(user, instructor));
         } else {
             return redirect("/login");
 
@@ -115,6 +144,8 @@ public class User_Controller extends Controller {
     // to page: /logout
     public static Result logout() {
         session().clear();
+
+        System.out.println("Session: " + session());
         flash("success", "You have been logged out, redirect to index page.");
         return redirect("/");
     }
@@ -142,7 +173,7 @@ public class User_Controller extends Controller {
      */
     @Security.Authenticated(Secured.class)
     public static Result currentUser() {
-        List<User> users = User.find.where().eq("user_name", request().username()).findList();
+        List<User> users = User.find.where().eq("email", request().username()).findList();
         if (users !=null && !users.isEmpty()){
             return ok(Json.toJson(users.get(0)));//only return the first one
         }else{
@@ -161,12 +192,12 @@ public class User_Controller extends Controller {
 
     // Login Form
     public static class Login {
-        public String user_name;
+        public String email;
         public String password;
 
         // validator
         public String validate() {
-            if (User.authenticate(user_name, password) == null) {
+            if (User.authenticate(email, password) == null) {
                 return "Invalid user or password!";
             }
             return null;

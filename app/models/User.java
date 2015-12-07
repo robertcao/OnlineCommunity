@@ -23,7 +23,7 @@ import java.util.Date;
 import java.util.List;
 
 @Entity
-@Table(name = "user")
+@Table(name = "users")
 @JsonIdentityInfo(
         generator = ObjectIdGenerators.PropertyGenerator.class,
         property = "id")
@@ -31,6 +31,8 @@ public class User extends Model {
 
     // finder
     public static Finder<Long, User> find = new Finder<Long, User>(Long.class, User.class);
+    public static Finder<String, User> findByEmail = new Finder<String, User>(String.class, User.class);
+
     @Id
     @Constraints.Min(11)
     public Long id;
@@ -43,9 +45,9 @@ public class User extends Model {
     public String password;
     public String first_name;
     public String last_name;
-    public int gender;
+    public String gender;
     @JsonIgnore
-    public String user_image_path;
+    public String thumbnail_id;
     @JsonIgnore
     public String created_at;
     @ManyToMany
@@ -60,7 +62,7 @@ public class User extends Model {
     private List<Course> teachingCourses;
     public User() {
     }
-    public User(Long id, String user_name, String email, String first_name, String password, String last_name, int gender, String user_image_path) {
+    public User(Long id, String user_name, String email, String first_name, String password, String last_name, String gender, String thumbnail_id) {
         this.id = id;
         this.user_name = user_name;
         this.email = email;
@@ -68,7 +70,7 @@ public class User extends Model {
         this.first_name = first_name;
         this.last_name = last_name;
         this.gender = gender;
-        this.user_image_path = user_image_path;
+        this.thumbnail_id = thumbnail_id;
     }
 
     // timer
@@ -83,6 +85,13 @@ public class User extends Model {
     public static void create(User user) {
         // set current time
         user.created_at = currentTime();
+
+        // set default image
+        if (user.gender == "female")
+            user.thumbnail_id = "female_default.jpg";
+        else
+            user.thumbnail_id = "male_default.jpg";
+
         // save to DB
         user.save();
     }
@@ -93,10 +102,10 @@ public class User extends Model {
     }
 
     // authenticator
-    public static User authenticate(String user_name, String password) {
-        System.out.println(user_name + "----" + password);
+    public static User authenticate(String email, String password) {
+        System.out.println(email + "----" + password);
         return find.where()
-                .eq("user_name", user_name)
+                .eq("email", email)
                 .eq("password", password)
                 .findUnique();
     }
