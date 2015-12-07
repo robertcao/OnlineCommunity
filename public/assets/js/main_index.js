@@ -4,13 +4,10 @@
 
     mainIndexApp.controller('mainSearchController', ['$scope', '$http', '$location', '$window', function ($scope, $http, $location, $window) {
 
-        $scope.lesson = {};
-        $scope.isSaving = undefined;
 
         $scope.currentUser = {};
         $http.get("/api/user").then(function (response) {
             $scope.currentUser = response.data;
-            $scope.lesson.instructor = $scope.currentUser;
         });
 
         $scope.typeahead = function(val) {
@@ -29,6 +26,13 @@
             });
         }
 
+    }]);
+
+
+    mainIndexApp.controller('loadCoursesController', ['$scope', '$http', '$location', '$window', function ($scope, $http, $location, $window) {
+        $http.get("/api/courses").then(function (response) {
+            $scope.listOfCourses = response.data
+        });
 
     }]);
 

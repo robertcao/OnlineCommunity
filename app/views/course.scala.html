@@ -119,6 +119,13 @@
 									<rating ng-model="courseRating" max="courseRatingMax" readonly="courseRatingIsReadOnly" on-hover="hoveringOver(value)" on-leave="overStar = null"></rating>
 									<span class="label" ng-class="{'label-warning': percent<30, 'label-info': percent>=30 && percent<70, 'label-success': percent>=70}" ng-show="overStar && !courseRatingIsReadOnly">{{percent}}%</span>
 									</div>
+
+								<section id="instructor">
+									<header>
+										<h2 class="text-left"><a href="/profile#?instructorid={{instructor.id}}">Instructor : {{instructor.first_name}} {{instructor.last_name}}</a></h2>
+									</header>
+								</section>
+
 								<section id="course-description" >
 									<header>
 										<h3 class="text-left">Course Description</h3>

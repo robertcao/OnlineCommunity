@@ -69,12 +69,14 @@ Free for personal and commercial use under the CCA 3.0 license (html5up.net/lice
 			</div>
 
 				<!-- Banner -->
-			<section id="banner" ng-controller="mainSearchController">
+			<section id="banner">
 				<header>
-					<h4>Search for courses</h4>
+					<h2 >Search</h2>
 
 				</header>
+			</section>
 
+			<div class="container special" ng-controller="mainSearchController">
 				<pre>{{asyncSelected | json}}</pre>
 				<input type="text" ng-model="asyncSelected" placeholder="Search for a course by name"
 				typeahead="courseName for courseName in typeahead($viewValue)"
@@ -83,7 +85,7 @@ Free for personal and commercial use under the CCA 3.0 license (html5up.net/lice
 				class="form-control input-lg" />
 				<i ng-show="loadingCourses" class="glyphicon glyphicon-refresh"></i>
 				<article class="4u 12u(mobile) special" ng-show="selectedCourse">
-					<a href="#" class="image featured"><img ng-src="{{selectedCourse.thumbnail_id}}" alt="" /></a>
+					<a href="/course#?courseId={{selectedCourse.id}}" class="image featured"><img ng-src="{{selectedCourse.thumbnail_id}}" alt="" /></a>
 					<header>
 						<h3><a href="#">{{selectedCourse.courseName}}</a></h3>
 					</header>
@@ -106,100 +108,28 @@ Free for personal and commercial use under the CCA 3.0 license (html5up.net/lice
 						</div>
 					</form>
 				</article>
-
-
-
-			</section>
+			</div>
 
 		</div>
 
+
+		<section class="carousel" ng-controller="loadCoursesController">
+			<div class="reel">
+
+				<article ng-repeat="course in listOfCourses">
+					<a href="/course#?courseId={{course.id}}" class="image featured"><img ng-src="{{course.thumbnail_id}}" /></a>
+					<header>
+						<h3><a href="/course#?courseId={{course.id}}">{{course.courseName}}</a></h3>
+					</header>
+					<p>{{course.description}}</p>
+				</article>
+
+
+			</div>
+		</section>
 
 			<!-- Features -->
 			<!-- 1. Top Arts & Design -->
-		<div class="wrapper style1">
-			<section id="features" class="container special">
-				<header>
-					<h2>Top</h2>
-					<p>Arts & Design </p>
-				</header>
-				<div class="row">
-					<article class="4u 12u(mobile) special">
-						<a href="#" class="image featured"><img src="@routes.Assets.at("images/logodesign_1.jpg")" alt="" /></a>
-						<header>
-							<h3><a href="#">How to Design a Logo</a></h3>
-						</header>
-						<p>Tara Roskell, Graphic Desginer 20+ Years Industry Eexperience
-						</p>
-						<form id="ratingsForm">
-							<div class="stars">
-								<input type="radio" name="star" class="star-1" id="star-1" />
-								<label class="star-1" for="star-1">1</label>
-								<input type="radio" name="star" class="star-2" id="star-2" />
-								<label class="star-2" for="star-2">2</label>
-								<input type="radio" name="star" class="star-3" id="star-3" />
-								<label class="star-3" for="star-3">3</label>
-								<input type="radio" name="star" class="star-4" id="star-4" />
-								<label class="star-4" for="star-4">4</label>
-								<input type="radio" name="star" class="star-5" id="star-5" />
-								<label class="star-5" for="star-5">5</label>
-								<span></span>
-							</div>
-						</form>
-					</article>
-					<article class="4u 12u(mobile) special">
-						<a href="#" class="image featured"><img src="@routes.Assets.at("images/iosgamedesign_1.jpg")" alt="" /></a>
-						<header>
-							<h3><a href="#">iOS Game Design</a></h3>
-						</header>
-						<p>
-									Ben Tristem, Best-selling Instructor, Game Developer
-						</p>
-						<form id="ratingsForm2">
-							<div class="stars">
-								<input type="radio" name="star" class="star-1" id="2star-1" />
-								<label class="star-1" for="star-1">1</label>
-								<input type="radio" name="star" class="star-2" id="2star-2" />
-								<label class="star-2" for="star-2">2</label>
-								<input type="radio" name="star" class="star-3" id="2star-3" />
-								<label class="star-3" for="star-3">3</label>
-								<input type="radio" name="star" class="star-4" id="2star-4" />
-								<label class="star-4" for="star-4">4</label>
-								<input type="radio" name="star" class="star-5" id="2star-5" />
-								<label class="star-5" for="star-5">5</label>
-								<span></span>
-							</div>
-						</form>
-					</article>
-					<article class="4u 12u(mobile) special">
-						<a href="#" class="image featured"><img src="@routes.Assets.at("images/interdesign_1.jpg")" alt="" /></a>
-						<header>
-							<h3><a href="#">Interior Design</a></h3>
-						</header>
-						<p>
-										Robeson Design, Decorate a Small Bedroom
-						</p>
-						<form id="ratingsForm3">
-							<div class="stars">
-								<input type="radio" name="star" class="star-1" id="3star-1" />
-								<label class="star-1" for="star-1">1</label>
-								<input type="radio" name="star" class="star-2" id="3star-2" />
-								<label class="star-2" for="star-2">2</label>
-								<input type="radio" name="star" class="star-3" id="3star-3" />
-								<label class="star-3" for="star-3">3</label>
-								<input type="radio" name="star" class="star-4" id="3star-4" />
-								<label class="star-4" for="star-4">4</label>
-								<input type="radio" name="star" class="star-5" id="3star-5" />
-								<label class="star-5" for="star-5">5</label>
-								<span></span>
-							</div>
-						</form>
-					</article>
-				</div>
-				<br/>
-				<a href="#" class="button" style="float: right;">more</a>
-			</section>
-
-		</div>
 			<!-- 2. Top Computer -->
 		<div class="wrapper style1">
 			<section id="features2" class="container special">

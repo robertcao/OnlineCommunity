@@ -189,6 +189,14 @@ public class User_Controller extends Controller {
         return ok(learning.render());
     }
 
+    public static Result getUser(long id) {
+        return ok(Json.toJson(User.find.byId(id)));
+    }
+
+    public static Result getUserByName(String name) {
+        return ok(Json.toJson(User.find.where().eq("user_name", name).findList().get(0)));
+    }
+
 
     // Login Form
     public static class Login {

@@ -88,4 +88,9 @@ public class CourseController extends Controller{
         }
         return ok(Json.toJson(jsonNodes));
     }
+
+    public static Result getCoursesByInstructorId(String id) {
+        User instructor = User.find.byId(Long.parseLong(id));
+        return getCourses(instructor.user_name);
+    }
 }

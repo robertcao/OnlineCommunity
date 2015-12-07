@@ -12,6 +12,9 @@ POST        /signup              controllers.User_Controller.signup()
 GET         /login               controllers.User_Controller.login()
 POST        /login               controllers.User_Controller.authenticate()
 GET         /api/user            controllers.User_Controller.currentUser()
+GET         /api/user/:id        controllers.User_Controller.getUser(id: Long)
+GET         /api/user/username/:name        controllers.User_Controller.getUserByName(name: String)
+
 
 
 GET         /profile             controllers.User_Controller.profile()
@@ -29,10 +32,11 @@ GET         /videohistory        controllers.User_Controller.videohistory()
 GET         /coursecreate         controllers.CourseController.createIndex()
 GET         /lessoncreate         controllers.CourseController.createLesson()
 GET         /api/courses          controllers.CourseController.listCourses()
-GET   /api/courses/:instructorid  controllers.CourseController.getCourses(instructorid: String)
+GET   /api/courses/:instructorname  controllers.CourseController.getCourses(instructorname: String)
 GET   /api/coursesbyname/:name    controllers.CourseController.getCourseByName(name: String)
 POST        /api/courses          controllers.CourseController.create()
 GET         /api/course/:courseid controllers.CourseController.getCourse(courseid: String)
+GET   /api/courses/instructor/:id controllers.CourseController.getCoursesByInstructorId(id: String)
 
 
 # Map static resources from the /public folder to the /assets URL path

@@ -1,14 +1,26 @@
 var profileApp = angular.module('profileApp', []);
 
-profileApp.controller('ProfileController', ['$scope', '$http', function ($scope, $http) {
+profileApp.controller('ProfileController', ['$scope', '$http', '$location', function ($scope, $http, $location) {
     $scope.message = "this is using AngularJS";
     $scope.currentUser = {};
-    $http.get("/api/user").then(function (response) {
-        $scope.currentUser = response.data;
-        $http.get("/api/courses/" + $scope.currentUser.user_name).then(function (response) {
+
+    var userIdParam = $location.search();
+    //alert(JSON.stringify(courseIdParam));
+    $scope.instructorid = userIdParam.instructorid;
+
+    if ($scope.instructorid == undefined) {
+        $http.get("/api/user").then(function (response) {
+            $scope.currentUser = response.data;
+            $http.get("/api/courses/" + $scope.currentUser.user_name).then(function (response) {
+                $scope.courses = response.data;
+            });
+        });
+    }
+    else {
+        $http.get("/api/courses/instructor/" + $scope.instructorid).then(function (response) {
             $scope.courses = response.data;
         });
-    });
+    }
 }]);
 
 
@@ -23,6 +35,11 @@ courseApp.controller('CourseController', ['$scope', '$http', '$location', functi
         $http.get("/api/course/" + $scope.courseId).then(function (response) {
             $scope.courseDetail = response.data;
 
+            var instructorPromise = $http.get("/api/user/username/" + $scope.courseDetail.instructor);
+            instructorPromise.success(function(data) {
+                console.log(JSON.stringify(data));
+                $scope.instructor = data;
+            });
 
             //further fetch lessons here
             $scope.lessons = [
