@@ -11,6 +11,7 @@ import play.mvc.BodyParser;
 import play.mvc.Controller;
 import play.mvc.Result;
 import views.html.coursecreate;
+import views.html.lessencreate;
 
 import java.util.List;
 
@@ -55,5 +56,9 @@ public class CourseController extends Controller{
 
         Course course = Course.findById.byId(Long.valueOf(courseid));
         return ok(Json.toJson(course));
+    }
+
+    public static Result createLessen() {
+        return ok(lessencreate.render());
     }
 }

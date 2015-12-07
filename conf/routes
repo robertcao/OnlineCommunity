@@ -27,6 +27,7 @@ GET         /videohistory        controllers.User_Controller.videohistory()
 
 # Course Management Module
 GET         /coursecreate         controllers.CourseController.createIndex()
+GET         /lessencreate         controllers.CourseController.createLessen()
 GET         /api/courses          controllers.CourseController.listCourses()
 POST        /api/courses          controllers.CourseController.create()
 GET         /api/course/:courseid controllers.CourseController.getCourse(courseid: String)
