@@ -10,13 +10,15 @@ Free for personal and commercial use under the CCA 3.0 license (html5up.net/lice
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
       <!--[if lte IE 8]><script src="@routes.Assets.at("assets/js/ie/html5shiv.js")"/><![endif]-->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
     <link href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="@routes.Assets.at("assets/css/main.css")" />
-    <link rel="stylesheet" href="@routes.Assets.at("assets/css/style.css")" />
-    <link rel="stylesheet" href="@routes.Assets.at("assets/css/video.css")" />
     <link rel="stylesheet" href="@routes.Assets.at("assets/css/chat_app.css")" />
     <link rel="stylesheet" href="@routes.Assets.at("assets/css/chat_theme.css")" />
     <link rel="stylesheet" href="@routes.Assets.at("assets/css/chat_basic.css")" />
+    <link rel="stylesheet" href="@routes.Assets.at("assets/css/main.css")" />
+    <link rel="stylesheet" href="@routes.Assets.at("assets/css/style.css")" />
+    <link rel="stylesheet" href="@routes.Assets.at("assets/css/video.css")" />
+
       <!--[if lte IE 8]><link rel="stylesheet" href="@routes.Assets.at("assets/css/ie8.css")" /><![endif]-->
       <!-- angularJS -->
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.15/angular.min.js"></script>
@@ -64,8 +66,8 @@ Free for personal and commercial use under the CCA 3.0 license (html5up.net/lice
             </ul>
           </li>
           <li><a href="/coursecreate">Course</a></li>
-          <li><a href="right-sidebar.html">Profile</a></li>
-          <li><a href="no-sidebar.html">Logout</a></li>
+          <li><a href="/profile">Profile</a></li>
+          <li><a href="/login">Logout</a></li>
         </ul>
       </nav>
 
@@ -74,7 +76,9 @@ Free for personal and commercial use under the CCA 3.0 license (html5up.net/lice
       <div class="container">
           <div class="row 200%">
             <div class="4u 12u(mobile)" id="sidebar">
-                    <br/>
+              <br/>
+              <br/>
+              <br/>
                       <div class="chat-container" ng-controller="Shell as vm">
                         <irontec-simple-chat
                         messages="vm.messages"
@@ -88,22 +92,16 @@ Free for personal and commercial use under the CCA 3.0 license (html5up.net/lice
                         </irontec-simple-chat>
                       </div>
               <br/>
-              <button  class="above-chat-button">Record</button>
-              <br/>
-              <button class="above-chat-button">upload</button>
-              <br/>
-              <button class="above-chat-button">Share Desktop</button>
-              <br/>
-
             </div>
             <div class="8u 12u(mobile) important(mobile)" id="content">
-              <h1> Course Video</h1>
+              <h2> Course Video</h2>
+              <br/>
                 <div id="mainvideo">
                   <div id="instructorvideo">
                     <iframe src="http://www.youtube.com/embed/W7qWa52k-nE" width="660" height="415" frameborder="0" allowfullscreen></iframe>
                   </div>
                   <div id="actionbutton" class="hover_action">
-                    <button id="takeactionbutton" class="btn">action &raquo;</button>
+                    <button id="takeactionbutton" class="btn">Action &raquo;</button>
                     <ul id="actions">
                       <li><a href="#">Record</a></li>
                       <li><a href="#">Upload</a></li>
