@@ -48,6 +48,18 @@ courseApp.controller('CourseController', ['$scope', '$http', '$location', functi
                 }
             ]
 
+            $scope.currentUser = {};
+            $http.get("/api/user").then(function (response) {
+                $scope.currentUser = response.data;
+                if ($scope.courseDetail.instructor == $scope.currentUser.user_name) {
+                    $scope.isUserInstructor = true;
+                }
+                else {
+                    $scope.isUserInstructor = false;
+                }
+
+            });
+
 
 
 

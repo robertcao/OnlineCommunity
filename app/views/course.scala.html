@@ -90,11 +90,18 @@
 								</header>
 
 								<ul ng-repeat="lesson in lessons">
-									<li class="text-left"><i class="glyphicon glyphicon-folder-open"></i><h3 class="lead">{{$index + 1}}&#46;&nbsp;{{lesson.topic}}</h3></li>
+									<li class="text-left"><i class="glyphicon glyphicon-folder-open"></i>
+
+										<a href="/videotime"><h3 class="lead">{{$index + 1}}&#46;&nbsp;{{lesson.topic}}</h3></a>
+										<button class="lesson-button" onclick="location.href='/videotime';">Watch video</button>
+										<button class="lesson-button" onclick="location.href='/videotime';" ng-show="!isUserInstructor">Go to class</button>
+
+									</li>
 									<!-- li class="text-left"><p class="text-left"> {{lesson.available_time}}</p></--li -->
 								</ul>
 								<footer class="text-left">
-								<a href="/lessoncreate" class="button">Create new lesson</a>
+								<button onclick="location.href='/lessoncreate';" class="lesson-button" ng-show="isUserInstructor">Create new lesson</button>
+								<button class="lesson-button" ng-show="!isUserInstructor">Take this class</button>
 								</footer>
 
 
