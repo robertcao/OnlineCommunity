@@ -1,25 +1,25 @@
 (function() {
     'use strict';
-    var lessenCreateApp = angular.module('lessenCreateApp', ['ngAnimate', 'ui.bootstrap', 'cgBusy']);
+    var lessonCreateApp = angular.module('lessonCreateApp', ['ngAnimate', 'ui.bootstrap', 'cgBusy']);
 
-    lessenCreateApp.controller('lessenCreateController', ['$scope', '$http', '$location', '$window', function ($scope, $http, $location, $window) {
+    lessonCreateApp.controller('lessonCreateController', ['$scope', '$http', '$location', '$window', function ($scope, $http, $location, $window) {
 
-        $scope.lessen = {};
+        $scope.lesson = {};
         $scope.isSaving = undefined;
 
         $scope.currentUser = {};
         $http.get("/api/user").then(function (response) {
             $scope.currentUser = response.data;
-            $scope.lessen.instructor = $scope.currentUser;
+            $scope.lesson.instructor = $scope.currentUser;
         });
 
-        $scope.submitMylessenForm = function () {
+        $scope.submitMylessonForm = function () {
 
             $scope.isSaving = true;
-            $scope.submitPromise = $http.post('/api/lessens', $scope.lessen);
+            $scope.submitPromise = $http.post('/api/lessons', $scope.lesson);
             $scope.submitPromise.success(function (data, status, headers, config) {
                 $scope.message = data;
-                $window.location.href = '/lessen#?lessenId=' + data.id;
+                $window.location.href = '/lesson#?lessonId=' + data.id;
 
             });
             $scope.submitPromise.error(function (data, status, headers, config) {
@@ -31,15 +31,15 @@
     }]);
 
 
-    lessenCreateApp.controller('DatePickController', ['$scope', '$http', function ($scope, $http) {
+    lessonCreateApp.controller('DatePickController', ['$scope', '$http', function ($scope, $http) {
 
         $scope.today = function () {
-            $scope.lessen.startDate = new Date();
+            $scope.lesson.startDate = new Date();
         };
         $scope.today();
 
         $scope.clear = function () {
-            $scope.lessen.starDate = null;
+            $scope.lesson.starDate = null;
         };
 
         // Disable weekend selection
@@ -70,10 +70,10 @@
 
     }]);
 
-    lessenCreateApp.controller('TimePickController', ['$scope', '$http', function ($scope, $http) {
+    lessonCreateApp.controller('TimePickController', ['$scope', '$http', function ($scope, $http) {
 
-        //$scope.lessen.startTime = new Date();
-        //$scope.lessen.endTime = new Date();
+        //$scope.lesson.startTime = new Date();
+        //$scope.lesson.endTime = new Date();
 
         $scope.hstep = 1;
         $scope.mstep = 15;
@@ -97,11 +97,11 @@
         };
 
         $scope.changedStart = function () {
-            console.log('Time start changed to: ' + $scope.lessen.startDate);
+            console.log('Time start changed to: ' + $scope.lesson.startDate);
         };
 
         $scope.changedEnd = function () {
-            console.log('Time end changed to: ' + $scope.lessen.endDate);
+            console.log('Time end changed to: ' + $scope.lesson.endDate);
         };
 
         $scope.clear = function () {

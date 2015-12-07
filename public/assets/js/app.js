@@ -2,14 +2,13 @@ var profileApp = angular.module('profileApp', []);
 
 profileApp.controller('ProfileController', ['$scope', '$http', function ($scope, $http) {
     $scope.message = "this is using AngularJS";
-    $http.get("/products").then(function (response) {
-        $scope.products = response.data;
+    $scope.currentUser = {};
+    $http.get("/api/user").then(function (response) {
+        $scope.currentUser = response.data;
+        $http.get("/api/courses/" + $scope.currentUser.user_name).then(function (response) {
+            $scope.courses = response.data;
+        });
     });
-
-    $http.get("/api/courses").then(function (response) {
-        $scope.courses = response.data;
-    });
-
 }]);
 
 
@@ -23,8 +22,41 @@ courseApp.controller('CourseController', ['$scope', '$http', '$location', functi
     if ($scope.courseId != undefined) {
         $http.get("/api/course/" + $scope.courseId).then(function (response) {
             $scope.courseDetail = response.data;
+
+
+            //further fetch lessons here
+            $scope.lessons = [
+                {
+                    'topic': 'Introduction',
+                    'available_time': $scope.courseDetail.startDate,
+                    'description' : 'first lesson meet the class'
+                },
+                {
+                    'topic': 'Learn the tools',
+                    'available_time': $scope.courseDetail.startDate,
+                    'description' : 'learn how to use the tools for development'
+                },
+                {
+                    'topic': 'Hands on implementation',
+                    'available_time': $scope.courseDetail.startDate,
+                    'description' : 'actual implementation'
+                },
+                {
+                    'topic': 'Apply what you have learned',
+                    'available_time': $scope.courseDetail.startDate,
+                    'description' : 'DIY'
+                }
+            ]
+
+
+
+
         });
     }
+
+
+
+
 
 }]);
 
@@ -120,7 +152,7 @@ courseCreateApp.controller('CourseCreateController', ['$scope', '$http', '$locat
     $scope.currentUser = {};
     $http.get("/api/user").then(function (response) {
         $scope.currentUser = response.data;
-        $scope.course.instructor = $scope.currentUser;
+        $scope.course.instructor = $scope.currentUser.user_name;
     });
 
     $scope.submitMyCourseForm = function () {

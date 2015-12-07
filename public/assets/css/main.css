@@ -2031,6 +2031,9 @@
 	transition: background-color 0.35s ease-in-out, border-color 0.35s ease-in-out;
 }
 
+
+
+
 .course {
 	text-align: center;
 	font-size: 14px;
@@ -2195,7 +2198,7 @@
 	.button {
 		position: relative;
 		display: inline-block;
-		background: #df7366;
+		background: #6C5775;
 		color: #fff;
 		text-align: center;
 		border-radius: 0.5em;

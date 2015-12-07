@@ -57,7 +57,7 @@ public class User extends Model {
             inverseJoinColumns = {@JoinColumn(name = "course_id", referencedColumnName = "id")})
     @JsonIgnore
     private List<Course> learningCourses;
-    @OneToMany(mappedBy = "instructor")
+    //@OneToMany(mappedBy = "instructor")
     @JsonIgnore
     private List<Course> teachingCourses;
     public User() {

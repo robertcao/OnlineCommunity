@@ -66,9 +66,8 @@ public class Course extends Model {
     @Column(name = "end_date")
     @JsonFormat(shape= JsonFormat.Shape.STRING, pattern="yyyy-MM-dd'T'HH:mm:ss.SSS'Z'", timezone="PDT")
     private Date endDate;
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "instructor")
-    private User instructor;
+    @Column(name = "instructor")
+    private String instructor;
     @ManyToMany
     @JoinTable(
             name = "learners",
@@ -82,11 +81,11 @@ public class Course extends Model {
         course.save();
     }
 
-    public User getInstructor() {
+    public String getInstructor() {
         return instructor;
     }
 
-    public void setInstructor(User instructor) {
+    public void setInstructor(String instructor) {
         this.instructor = instructor;
     }
 

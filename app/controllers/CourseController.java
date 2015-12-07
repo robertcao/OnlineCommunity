@@ -6,12 +6,14 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
 import com.google.common.collect.Lists;
 import models.Course;
+import models.Instructor;
+import models.User;
 import play.libs.Json;
 import play.mvc.BodyParser;
 import play.mvc.Controller;
 import play.mvc.Result;
 import views.html.coursecreate;
-import views.html.lessencreate;
+import views.html.lessoncreate;
 
 import java.util.List;
 
@@ -45,6 +47,13 @@ public class CourseController extends Controller{
         System.out.println("received json=" + json.toString());
         Course course = Json.fromJson(json, Course.class);
         course.save();
+        //need to save instructor here.
+        List<Instructor> instructors = Instructor.findByName.where().eq("name", course.getInstructor()).findList();
+        if (instructors == null || instructors.isEmpty()) {
+            User user = User.find.where().eq("user_name", course.getInstructor()).findList().get(0); //should always find it
+            Instructor instructor = new Instructor(null, user.user_name, null, 0, user.thumbnail_id);
+            instructor.save();
+        }
         return ok(Json.toJson(course));
     }
 
@@ -58,7 +67,16 @@ public class CourseController extends Controller{
         return ok(Json.toJson(course));
     }
 
-    public static Result createLessen() {
-        return ok(lessencreate.render());
+    public static Result createLesson() {
+        return ok(lessoncreate.render());
+    }
+
+    public static Result getCourses(String instructorid) {
+        List<Course> courses = Course.findById.where().eq("instructor", instructorid).findList();
+        List<JsonNode> jsonNodes = Lists.newArrayList();
+        for (Course course : courses) {
+            jsonNodes.add(Json.toJson(course));
+        }
+        return ok(Json.toJson(jsonNodes));
     }
 }

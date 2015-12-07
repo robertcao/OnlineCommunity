@@ -12,6 +12,7 @@ Free for personal and commercial use under the CCA 3.0 license (html5up.net/lice
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
 			<!--[if lte IE 8]><script src="@routes.Assets.at("assets/js/ie/html5shiv.js")"/><![endif]-->
+		<link href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css" rel="stylesheet">
 		<link rel="stylesheet" href="@routes.Assets.at("assets/css/main.css")" />
 		<link rel="stylesheet" href="@routes.Assets.at("assets/css/style.css")" />
 		<link rel="stylesheet" href="@routes.Assets.at("assets/css/course_main.css")" />
@@ -77,11 +78,11 @@ Free for personal and commercial use under the CCA 3.0 license (html5up.net/lice
 
 								<div class="row 50%" ng-repeat="course in courses">
 									<div class="4u">
-										<a href="/course#?courseId={{course.id}}" class="image fit"><img ng-src="@routes.Assets.at("images/pic10.jpg")"/></a>
+										<a href="/course#?courseId={{course.id}}" class="image fit"><img ng-src="{{course.thumbnail_id}}"/></a>
 									</div>
 									<div class="8u">
 										<h4>{{course.courseName}} </h4>
-										<span>{{course.startDate}}</span>
+
 									</div>
 								</div>
 

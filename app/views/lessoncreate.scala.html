@@ -1,23 +1,24 @@
 <!DOCTYPE HTML>
-<html ng-app="lessenCreateApp">
+<html ng-app="lessonCreateApp">
   <head>
-    <title>Lessen Create</title>
+    <title>Lesson Create</title>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
       <!--[if lte IE 8]><script src="@routes.Assets.at("assets/js/ie/html5shiv.js")"/><![endif]-->
+    <link href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="@routes.Assets.at("assets/css/main.css")" />
     <link rel="stylesheet" href="@routes.Assets.at("assets/css/angular-busy.css")" />
       <!--[if lte IE 8]><link rel="stylesheet" href="@routes.Assets.at("assets/css/ie8.css")" /><![endif]-->
       <!-- angularJS -->
-    <link href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css" rel="stylesheet">
+
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.15/angular.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.15/angular-route.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.15/angular-animate.min.js"></script>
     <script src="@routes.Assets.at("assets/js/ui-bootstrap-tpls-0.12.1.min.js")"></script>
     <script src="@routes.Assets.at("assets/js/angular-busy.js")"></script>
-    <script src="@routes.Assets.at("assets/js/lessen.js")"></script>
+    <script src="@routes.Assets.at("assets/js/lesson.js")"></script>
   </head>
-  <body class="no-sidebar" ng-controller="lessenCreateController">
+  <body class="no-sidebar" ng-controller="lessonCreateController">
     <div id="page-wrapper">
 
         <!-- Header -->
@@ -60,33 +61,33 @@
         <div class="container" >
           <article id="main" class="special">
             <header>
-              <h1>Create Your Lessen</h1>
+              <h1>Create Your lesson</h1>
               <br/>
               <div cg-busy="submitPromise">
                 <div class="course-card" >
                   <ng-form class="contact-form" name="courseForm" >
                     <fieldset ng-disabled="isSaving">
-                      <input type="text" ng-required="true" ng-model="lessen.lessenName" placeholder="Lessen name"/>
+                      <input type="text" ng-required="true" ng-model="lesson.lessonName" placeholder="lesson name"/>
                       <br/>
-                      <input type="text" ng-required="true" ng-model="lessen.courseName" placeholder="Course name"/>
+                      <input type="text" ng-required="true" ng-model="lesson.courseName" placeholder="Course name"/>
                       <br/>
-                      <input type="number" ng-required="true" ng-model="lessen.duration" placeholder="Lessen duration in mins"/>
+                      <input type="number" ng-required="true" ng-model="lesson.duration" placeholder="lesson duration in mins"/>
                       <br/>
-                      <textarea rows="4" cols="50" ng-required="true" ng-model="lessen.description" placeholder="Enter lessen description here..."></textarea>
+                      <textarea rows="4" cols="50" ng-required="true" ng-model="lesson.description" placeholder="Enter lesson description here..."></textarea>
 
                       <br/>
                       <div class="form-group">
                         <div class="col-md-5 pull-left" ng-controller="DatePickController">
-                          <pre class="alert alert-info">Start Date: <em>{{course.startDate | date:'fullDate' }} {{course.startDate | date:'shortTime' }}</em></pre>
-                          <datepicker ng-model="course.startDate" min-date="minDate" show-weeks="true" class="well well-sm"></datepicker>
+                          <pre class="alert alert-info">Start Date: <em>{{lesson.startDate | date:'fullDate' }} {{lesson.startDate | date:'shortTime' }}</em></pre>
+                          <datepicker ng-model="lesson.startDate" min-date="minDate" show-weeks="true" class="well well-sm"></datepicker>
                           <div ng-controller="TimePickController">
                               <!-- pre class="alert alert-info">Time is: {{course.startTime | date:'shortTime' }}</pre -->
-                            <timepicker ng-model="course.startDate" ng-change="changedStart()" hour-step="hstep" minute-step="mstep" show-meridian="ismeridian"></timepicker>
+                            <timepicker ng-model="lesson.startDate" ng-change="changedStart()" hour-step="hstep" minute-step="mstep" show-meridian="ismeridian"></timepicker>
                           </div>
                         </div>
                       </div>
                       <br/>
-                      <button ng-click="submitMylessenForm()">Create</button>
+                      <button ng-click="submitMylessonForm()">Create</button>
                     </fieldset>
                   </ng-form>
 
