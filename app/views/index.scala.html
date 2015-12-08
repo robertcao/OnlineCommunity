@@ -84,12 +84,12 @@ Free for personal and commercial use under the CCA 3.0 license (html5up.net/lice
 				typeahead-loading="loadingCourses"
 				class="form-control input-lg" />
 				<i ng-show="loadingCourses" class="glyphicon glyphicon-refresh"></i>
-				<article class="4u 12u(mobile) special" ng-show="selectedCourse">
+				<article class="special-article-lg" ng-show="selectedCourse">
 					<a href="/course#?courseId={{selectedCourse.id}}" class="image featured"><img ng-src="{{selectedCourse.thumbnail_id}}" alt="" /></a>
 					<header>
 						<h3><a href="#">{{selectedCourse.courseName}}</a></h3>
 					</header>
-					<p>
+					<p >
 						{{selectedCourse.description}}
 					</p>
 					<form id="ratingsForm">
@@ -113,104 +113,50 @@ Free for personal and commercial use under the CCA 3.0 license (html5up.net/lice
 		</div>
 
 
-		<section class="carousel" ng-controller="loadCoursesController">
-			<div class="reel">
-
-				<article ng-repeat="course in listOfCourses">
-					<a href="/course#?courseId={{course.id}}" class="image featured"><img ng-src="{{course.thumbnail_id}}" /></a>
-					<header>
-						<h3><a href="/course#?courseId={{course.id}}">{{course.courseName}}</a></h3>
-					</header>
-					<p>{{course.description}}</p>
-				</article>
-
-
-			</div>
-		</section>
 
 			<!-- Features -->
 			<!-- 1. Top Arts & Design -->
 			<!-- 2. Top Computer -->
 		<div class="wrapper style1">
-			<section id="features2" class="container special">
+			<section id="features2" class="container special" ng-controller="loadCoursesController">
 				<header>
 					<h2>Top</h2>
-					<p>Computer </p>
+					<p>Computer</p>
 				</header>
-				<div class="row">
-					<article class="4u 12u(mobile) special">
-						<a href="#" class="image featured"><img src="@routes.Assets.at("images/mongo_1.jpg")" alt="" /></a>
-						<header>
-							<h3><a href="#">MongoDB</a></h3>
-						</header>
-						<p> 	Shaun Verch, From Zero to Sharded
-						</p>
-						<form id="ratingsForm4">
-							<div class="stars">
-								<input type="radio" name="star" class="star-1" id="4star-1" />
-								<label class="star-1" for="star-1">1</label>
-								<input type="radio" name="star" class="star-2" id="4star-2" />
-								<label class="star-2" for="star-2">2</label>
-								<input type="radio" name="star" class="star-3" id="4star-3" />
-								<label class="star-3" for="star-3">3</label>
-								<input type="radio" name="star" class="star-4" id="4star-4" />
-								<label class="star-4" for="star-4">4</label>
-								<input type="radio" name="star" class="star-5" id="4star-5" />
-								<label class="star-5" for="star-5">5</label>
-								<span></span>
-							</div>
-						</form>
-					</article>
-					<article class="4u 12u(mobile) special">
-						<a href="#" class="image featured"><img src="@routes.Assets.at("images/rest_1.jpg")" alt="" /></a>
-						<header>
-							<h3><a href="#">Learn REST</a></h3>
-						</header>
-						<p>
-									Shaun Verch, REST API Toturial
-						</p>
-						<form id="ratingsForm5">
-							<div class="stars">
-								<input type="radio" name="star" class="star-1" id="5star-1" />
-								<label class="star-1" for="star-1">1</label>
-								<input type="radio" name="star" class="star-2" id="5star-2" />
-								<label class="star-2" for="star-2">2</label>
-								<input type="radio" name="star" class="star-3" id="5star-3" />
-								<label class="star-3" for="star-3">3</label>
-								<input type="radio" name="star" class="star-4" id="5star-4" />
-								<label class="star-4" for="star-4">4</label>
-								<input type="radio" name="star" class="star-5" id="5star-5" />
-								<label class="star-5" for="star-5">5</label>
-								<span></span>
-							</div>
-						</form>
-					</article>
-					<article class="4u 12u(mobile) special">
-						<a href="#" class="image featured"><img src="@routes.Assets.at("images/java_1.jpg")" alt="" /></a>
-						<header>
-							<h3><a href="#">JAVA Introduction</a></h3>
-						</header>
-						<p>Shaun Verch, Introduction to JAVA
-						</p>
-						<form id="ratingsForm6">
-							<div class="stars">
-								<input type="radio" name="star" class="star-1" id="6star-1" />
-								<label class="star-1" for="star-1">1</label>
-								<input type="radio" name="star" class="star-2" id="6star-2" />
-								<label class="star-2" for="star-2">2</label>
-								<input type="radio" name="star" class="star-3" id="6star-3" />
-								<label class="star-3" for="star-3">3</label>
-								<input type="radio" name="star" class="star-4" id="6star-4" />
-								<label class="star-4" for="star-4">4</label>
-								<input type="radio" name="star" class="star-5" id="6star-5" />
-								<label class="star-5" for="star-5">5</label>
-								<span></span>
-							</div>
-						</form>
+				<div class="special-row">
+					<article class="special-article-wide" ng-repeat="course in listOfCourses.slice(((currentPage-1)*itemsPerPage), ((currentPage)*itemsPerPage))">
+						<a  href="/course#?courseId={{course.id}}" class="image fit"><img ng-src="{{course.thumbnail_id}}"/></a>
 					</article>
 				</div>
+				<div class="special-row">
+					<header class="special-article-wide" ng-repeat="course in listOfCourses.slice(((currentPage-1)*itemsPerPage), ((currentPage)*itemsPerPage))">
+						<h3><a  href="/course#?courseId={{course.id}}">{{course.courseName}}</a></h3>
+					</header>
+				</div>
+				<div class="special-row">
+					<p class="special-article-wide" ng-repeat="course in listOfCourses.slice(((currentPage-1)*itemsPerPage), ((currentPage)*itemsPerPage))">
+						<span  >{{course.description}}</span>
+					</p>
+				</div>
+				<div class="special-row">
+					<form id="ratingsForm1" class="special-article-wide" ng-repeat="course in listOfCourses.slice(((currentPage-1)*itemsPerPage), ((currentPage)*itemsPerPage))">
+						<div class="stars" >
+							<input type="radio" name="star" class="star-1" id="star-11" />
+							<label class="star-1" for="star-1">1</label>
+							<input type="radio" name="star" class="star-2" id="star-12" />
+							<label class="star-2" for="star-2">2</label>
+							<input type="radio" name="star" class="star-3" id="star-13" />
+							<label class="star-3" for="star-3">3</label>
+							<input type="radio" name="star" class="star-4" id="star-14" />
+							<label class="star-4" for="star-4">4</label>
+							<input type="radio" name="star" class="star-5" id="star-15" />
+							<label class="star-5" for="star-5">5</label>
+							<span></span>
+						</div>
+					</form>
+				</div>
 				<br/>
-				<a href="#" class="button" style="float: right;">more</a>
+				<pagination total-items="totalItems" ng-model="currentPage" ng-change="pageChanged()" items-per-page="itemsPerPage"></pagination>
 			</section>
 
 		</div>

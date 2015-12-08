@@ -90,12 +90,47 @@ form .stars span {
   margin: 0 1em 0 0;
   white-space: normal;
   opacity: 1.0;
-  -moz-transition: opacity 0.75s ease-in-out;
-  -webkit-transition: opacity 0.75s ease-in-out;
-  -ms-transition: opacity 0.75s ease-in-out;
-  transition: opacity 0.75s ease-in-out;
   float: none;
   vertical-align: bottom;
+}
+
+.special-article-wide{
+  display: table-cell;
+  width: 15em;
+  background: #fff;
+  text-align: center;
+  padding: 0 1em 1em 1em;
+  margin: 0 1em 0 0;
+  white-space: normal;
+  opacity: 1.0;
+  float: none;
+  vertical-align: bottom;
+}
+
+.special-article-middle{
+  display: table-cell;
+  width: 15em;
+  background: #fff;
+  text-align: center;
+  padding: 0 1em 1em 1em;
+  margin: 0 1em 0 0;
+  white-space: normal;
+  opacity: 1.0;
+  float: none;
+  vertical-align: middle;
+}
+
+.special-article-lg{
+  display: table-cell;
+  width: 20em;
+  background: #fff;
+  text-align: center;
+  padding: 0 1em 1em 1em;
+  margin: 0 1em 0 0;
+  white-space: normal;
+  opacity: 1.0;
+  float: none;
+  vertical-align: middle;
 }
 
 
