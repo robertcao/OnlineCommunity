@@ -105,7 +105,7 @@ courseApp.controller('CourseController', ['$scope', '$http', '$location', functi
                         $scope.takeCoursePromise.success(function(data, status, headers, config) {
                             console.log("registration successful: " + data);
                             //$window.location.href = '/course#?courseId=' + data.id;
-                            alert( "Thank you for: " + $scope.currentUser.first_name + " for registerating this course: " + $scope.courseDetail.name);
+                            alert( "Thank you for: " + $scope.currentUser.first_name + " for registerating this course: " + $scope.courseDetail.courseName);
                             $scope.isUserRegistered = true;
 
                         });
