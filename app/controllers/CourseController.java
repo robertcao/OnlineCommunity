@@ -7,6 +7,7 @@ import com.fasterxml.jackson.databind.SerializationFeature;
 import com.google.common.collect.Lists;
 import models.Course;
 import models.Instructor;
+import models.Learner;
 import models.User;
 import play.libs.Json;
 import play.mvc.BodyParser;
@@ -92,5 +93,57 @@ public class CourseController extends Controller{
     public static Result getCoursesByInstructorId(String id) {
         User instructor = User.find.byId(Long.parseLong(id));
         return getCourses(instructor.user_name);
+    }
+
+    public static Result takerCourse(long userid, long courseid) {
+
+        Course course = Course.findById.byId(courseid);
+        if (course == null) {
+            return badRequest("course not found");
+        }
+        User user = User.find.byId(userid);
+        if (user == null) {
+            return badRequest("user not found");
+        }
+
+        System.out.println("user=" + Json.toJson(user));
+        System.out.println("try to take this course=" + Json.toJson(course));
+
+
+        List<Learner> learners = Learner.find.where().eq("name", user.user_name).findList();
+        for (Learner learner : learners) {
+            if (learner.course_id == course.getId()) { //already registered
+                System.out.println("already registered");
+                return ok(Json.toJson(learner));
+            }
+        }
+
+
+
+        //create new one
+        Learner learner = new Learner();
+        learner.name = user.user_name;
+        learner.course_id = course.getId();
+        learner.course_name = course.getCourseName();
+        learner.status = 2 ; //current
+        learner.thumbnail_id = user.thumbnail_id;
+        learner.save();
+        return ok(Json.toJson(learner));
+
+    }
+
+    public static Result registeredCourses(long userid) {
+        User user = User.find.byId(userid);
+        if (user == null) {
+            return badRequest("user not found");
+        }
+
+        List<JsonNode> jsonNodes = Lists.newArrayList();
+
+        List<Learner> learners = Learner.find.where().eq("name", user.user_name).findList();
+        for (Learner learner : learners) {
+            jsonNodes.add(Json.toJson(Course.findById.byId(learner.course_id)));
+        }
+        return ok(Json.toJson(jsonNodes));
     }
 }

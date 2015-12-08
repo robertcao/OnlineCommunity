@@ -93,15 +93,16 @@
 									<li class="text-left"><i class="glyphicon glyphicon-folder-open"></i>
 
 										<a href="/videotime"><h3 class="lead">{{$index + 1}}&#46;&nbsp;{{lesson.topic}}</h3></a>
-										<button class="lesson-button" onclick="location.href='/videotime';">Watch video</button>
-										<button class="lesson-button" onclick="location.href='/videotime';" ng-show="!isUserInstructor">Go to class</button>
+										<button class="lesson-button" onclick="location.href='/videotime';" ng-show="isUserInstructor || isUserRegistered">Watch video</button>
+										<button class="lesson-button" onclick="location.href='/videotime';" ng-show="isUserInstructor || isUserRegistered">Go to class</button>
 
 									</li>
 									<!-- li class="text-left"><p class="text-left"> {{lesson.available_time}}</p></--li -->
 								</ul>
 								<footer class="text-left">
 								<button onclick="location.href='/lessoncreate';" class="lesson-button" ng-show="isUserInstructor">Create new lesson</button>
-								<button class="lesson-button" ng-show="!isUserInstructor">Take this class</button>
+								<button onclick="location.href='/coursecreate';" class="lesson-button" ng-show="isUserInstructor">Create new course</button>
+								<button class="lesson-button" ng-show="!isUserInstructor && !isUserRegistered" ng-click="takeThisCourseForm()">Take this course</button>
 								</footer>
 
 
@@ -126,6 +127,11 @@
 									</header>
 								</section>
 
+								<section id="learner" ng-show="isUserRegistered">
+									<header>
+										<h2 class="text-left">You already registered for this course</h2>
+									</header>
+								</section>
 								<section id="course-description" >
 									<header>
 										<h3 class="text-left">Course Description</h3>

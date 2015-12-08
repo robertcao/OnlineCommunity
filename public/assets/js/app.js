@@ -74,20 +74,50 @@ courseApp.controller('CourseController', ['$scope', '$http', '$location', functi
                 else {
                     $scope.isUserInstructor = false;
                 }
+                if (!$scope.isUserInstructor) {
+
+                    var learnerPromise = $http.get("/api/courses/registered/" + $scope.currentUser.id);
+                    learnerPromise.success(function(data) {
+                        //check if the registered list of courses contains this one
+                        if (typeof data !== 'undefined' && data.length > 0) {
+                            for (var i in data) {
+                                if (data[i].id == $scope.courseDetail.id) {
+                                    $scope.isUserRegistered = true;
+                                    console.log('this user already registered');
+                                    break;
+                                }
+                            }
+                        }
+
+                    });
+
+
+                    $scope.takeThisCourseForm = function () {
+                        $scope.takeCoursePromise = $http.post('/api/course/take/'+$scope.currentUser.id+'/'+$scope.courseDetail.id);
+                        $scope.takeCoursePromise.success(function(data, status, headers, config) {
+                            console.log("registration successful: " + data);
+                            //$window.location.href = '/course#?courseId=' + data.id;
+                            alert( "Thank you for: " + $scope.currentUser.first_name + " for registerating this course: " + $scope.courseDetail.name);
+                            $scope.isUserRegistered = true;
+
+                        });
+                        $scope.takeCoursePromise.error(function(data, status, headers, config) {
+                            alert( "registration failure message: " + JSON.stringify({data: data}));
+                            //$scope.isSaving = false;
+                        });
+                    }
+
+                }
 
             });
 
 
-
-
         });
     }
-
-
-
-
-
 }]);
+
+
+
 
 courseApp.controller('DropdownController', ['$scope', function ($scope) {
     $scope.videoButtonItems = [
