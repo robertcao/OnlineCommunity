@@ -175,8 +175,9 @@ Free for personal and commercial use under the CCA 3.0 license (html5up.net/lice
 									<article class="4u 12u(mobile) special" ng-repeat="course in courses">
 										<a href="/course#?courseId={{course.id}}" class="image fit"><img ng-src="{{course.thumbnail_id}}"/></a>
 										<header>
-											<h3><a href="/course#?courseId={{course.id}}">{{course.description}}</a></h3>
+											<h3><a href="/course#?courseId={{course.id}}">{{course.courseName}}</a></h3>
 										</header>
+										<br/>
 										<p>
 									     {{course.description}}
 										</p>
@@ -207,8 +208,9 @@ Free for personal and commercial use under the CCA 3.0 license (html5up.net/lice
 									<article class="4u 12u(mobile) special" ng-repeat="course in registeredCourses">
 										<a href="/course#?courseId={{course.id}}" class="image fit"><img ng-src="{{course.thumbnail_id}}"/></a>
 										<header>
-											<h3><a href="/course#?courseId={{course.id}}">{{course.description}}</a></h3>
+											<h3><a href="/course#?courseId={{course.id}}">{{course.courseName}}</a></h3>
 										</header>
+										<br/>
 										<p>
 											{{course.description}}
 										</p>
