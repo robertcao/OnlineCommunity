@@ -174,32 +174,36 @@ Free for personal and commercial use under the CCA 3.0 license (html5up.net/lice
 								<div class="special-row">
 									<article class="special-article" ng-repeat="course in courses">
 										<a href="/course#?courseId={{course.id}}" class="image fit"><img ng-src="{{course.thumbnail_id}}"/></a>
-										<header>
-											<h3><a href="/course#?courseId={{course.id}}">{{course.courseName}}</a></h3>
-										</header>
-										<br/>
-										<p>
-									     {{course.description}}
-										</p>
-										<form id="ratingsForm1">
-											<div class="stars">
-												<input type="radio" name="star" class="star-1" id="star-11" />
-												<label class="star-1" for="star-1">1</label>
-												<input type="radio" name="star" class="star-2" id="star-12" />
-												<label class="star-2" for="star-2">2</label>
-												<input type="radio" name="star" class="star-3" id="star-13" />
-												<label class="star-3" for="star-3">3</label>
-												<input type="radio" name="star" class="star-4" id="star-14" />
-												<label class="star-4" for="star-4">4</label>
-												<input type="radio" name="star" class="star-5" id="star-15" />
-												<label class="star-5" for="star-5">5</label>
-												<span></span>
-											</div>
-										</form>
-										<footer>
-											<a href="#" class="button" ng-show="!isInstructor">Register</a>
-										</footer>
 									</article>
+								</div>
+								<div class="special-row">
+									<header class="special-article" ng-repeat="course in courses">
+										<h3><a href="/course#?courseId={{course.id}}">{{course.courseName}}</a></h3>
+									</header>
+								</div>
+								<br/>
+								<div class="special-row">
+									<p class="special-article" ng-repeat="course in courses">
+										{{course.description}}
+									</p>
+								</div>
+
+								<div class="special-row">
+									<form id="ratingsForm1" class="special-article" ng-repeat="course in courses">
+										<div class="stars">
+											<input type="radio" name="star" class="star-1" id="star-11" />
+											<label class="star-1" for="star-1">1</label>
+											<input type="radio" name="star" class="star-2" id="star-12" />
+											<label class="star-2" for="star-2">2</label>
+											<input type="radio" name="star" class="star-3" id="star-13" />
+											<label class="star-3" for="star-3">3</label>
+											<input type="radio" name="star" class="star-4" id="star-14" />
+											<label class="star-4" for="star-4">4</label>
+											<input type="radio" name="star" class="star-5" id="star-15" />
+											<label class="star-5" for="star-5">5</label>
+											<span></span>
+										</div>
+									</form>
 								</div>
 								<hr/>
 								<h2> Current Learning</h2>
@@ -207,14 +211,22 @@ Free for personal and commercial use under the CCA 3.0 license (html5up.net/lice
 								<div class="special-row">
 									<article class="special-article" ng-repeat="course in registeredCourses">
 										<a href="/course#?courseId={{course.id}}" class="image fit"><img ng-src="{{course.thumbnail_id}}"/></a>
-										<header>
+									</article>
+								</div>
+								<div class="special-row" >
+										<header class="special-article" ng-repeat="course in registeredCourses">
 											<h3><a href="/course#?courseId={{course.id}}">{{course.courseName}}</a></h3>
 										</header>
+								</div>
 										<br/>
-										<p>
+								<div class="special-row">
+										<p class="special-article" ng-repeat="course in registeredCourses">
 											{{course.description}}
 										</p>
-										<form id="ratingsForm1">
+								</div>
+
+								<div class="special-row">
+										<form id="ratingsForm1" class="special-article" ng-repeat="course in registeredCourses">
 											<div class="stars">
 												<input type="radio" name="star" class="star-1" id="star-11" />
 												<label class="star-1" for="star-1">1</label>
@@ -229,9 +241,10 @@ Free for personal and commercial use under the CCA 3.0 license (html5up.net/lice
 												<span></span>
 											</div>
 										</form>
-									</article>
-
 								</div>
+
+
+
 							</article>
 						</div>
 
