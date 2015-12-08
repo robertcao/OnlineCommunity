@@ -14,12 +14,20 @@ profileApp.controller('ProfileController', ['$scope', '$http', '$location', func
             $http.get("/api/courses/" + $scope.currentUser.user_name).then(function (response) {
                 $scope.courses = response.data;
             });
+            var learnerPromise = $http.get("/api/courses/registered/" + $scope.currentUser.id);
+            learnerPromise.success(function(data) {
+                if (typeof data !== 'undefined' && data.length > 0) {
+                    $scope.registeredCourses = data;
+                }
+            });
+            $scope.isInstructor = true;
         });
     }
     else {
         $http.get("/api/courses/instructor/" + $scope.instructorid).then(function (response) {
             $scope.courses = response.data;
         });
+        $scope.isInstructor = false;
     }
 }]);
 
