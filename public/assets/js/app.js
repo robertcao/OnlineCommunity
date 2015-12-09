@@ -34,7 +34,7 @@ profileApp.controller('ProfileController', ['$scope', '$http', '$location', func
 
 var courseApp = angular.module('courseApp', ['ui.bootstrap']);
 
-courseApp.controller('CourseController', ['$scope', '$http', '$location', function ($scope, $http, $location) {
+courseApp.controller('CourseController', ['$scope', '$http', '$location', '$window', function ($scope, $http, $location, $window) {
     $scope.message = "inside course";
     var courseIdParam = $location.search();
     //alert(JSON.stringify(courseIdParam));
@@ -53,6 +53,10 @@ courseApp.controller('CourseController', ['$scope', '$http', '$location', functi
             lessonPromise.success(function(data) {
                 $scope.lessons = data;
             });
+
+            $scope.goCreateLesson = function() {
+                $window.location.href = '/lessoncreate#?courseId=' + $scope.courseDetail.id;
+            }
 
             //further fetch lessons here
             //$scope.lessons = [
@@ -223,7 +227,7 @@ courseApp.controller('urlCtrl', function ($scope, $log, $window) {
     };
 
     $scope.ToClass = function () {
-        var url = "https://ec2-52-11-111-157.us-west-2.compute.amazonaws.com/playvideo#" + $scope.lesson.id + "#" + $scope.currentUser.user_name + "#" + $scope.isUserInstructor;
+        var url = "https://ec2-52-11-111-157.us-west-2.compute.amazonaws.com/#" + $scope.lesson.id + "#" + $scope.currentUser.user_name + "#" + $scope.isUserInstructor;
         $log.log(url);
         $window.location.href = url;
     };

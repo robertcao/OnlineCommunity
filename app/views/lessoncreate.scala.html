@@ -69,8 +69,25 @@
                     <fieldset ng-disabled="isSaving">
                       <input type="text" ng-required="true" ng-model="lesson.topic" placeholder="lesson topic name"/>
                       <br/>
-                      <textarea rows="4" cols="50" ng-required="true" ng-model="lesson.description" placeholder="Enter lesson description here..."></textarea>
+                      <br/>
+                      <article class="special-article-lg" ng-show="courseDetail">
+                        <header>
+                          <h3><a href="/course#?courseId={{courseDetail.id}}">{{courseDetail.courseName}}</a></h3>
+                          <span>{{courseDetail.description}}</span>
+                        </header>
 
+                      </article>
+
+                      <ul ng-repeat="existingLesson in lessons">
+                        <span>Existing Lessons</span>
+                        <li><i class="glyphicon glyphicon-folder-open"></i>
+                          <span >{{$index + 1}}&#46;&nbsp;{{existingLesson.topic}}</span>
+                        </li>
+                          <!-- li class="text-left"><p class="text-left"> {{lesson.available_time}}</p></--li -->
+                      </ul>
+
+                      <br/>
+                      <textarea rows="4" cols="50" ng-required="true" ng-model="lesson.description" placeholder="Enter lesson description here..."></textarea>
                       <br/>
                       <div class="form-group">
                         <div class="col-md-5 pull-left" ng-controller="DatePickController">
