@@ -30,6 +30,18 @@ public class LessonController extends Controller {
         JsonNode json = request().body().asJson();
         System.out.println("received json lesson=" + json.toString());
         Lesson lesson = Json.fromJson(json, Lesson.class);
+
+
+        List<Lesson> lessons = Lesson.finder.where().eq("course_id", lesson.getCourse_id()).findList();
+        int nextLessonSequence = 0;
+        if (lessons != null) {
+            for (Lesson existingLesson : lessons) {
+                if (existingLesson.getSequence_id() >= nextLessonSequence) {
+                    nextLessonSequence = existingLesson.getSequence_id() + 1;
+                }
+            }
+        }
+        lesson.setSequence_id(nextLessonSequence);
         lesson.save();
         return ok(Json.toJson(lesson)); //after save it will have id
     }

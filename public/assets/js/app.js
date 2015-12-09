@@ -49,29 +49,34 @@ courseApp.controller('CourseController', ['$scope', '$http', '$location', functi
                 $scope.instructor = data;
             });
 
-            //further fetch lessons here
-            $scope.lessons = [
-                {
-                    'topic': 'Introduction',
-                    'available_time': $scope.courseDetail.startDate,
-                    'description' : 'first lesson meet the class'
-                },
-                {
-                    'topic': 'Learn the tools',
-                    'available_time': $scope.courseDetail.startDate,
-                    'description' : 'learn how to use the tools for development'
-                },
-                {
-                    'topic': 'Hands on implementation',
-                    'available_time': $scope.courseDetail.startDate,
-                    'description' : 'actual implementation'
-                },
-                {
-                    'topic': 'Apply what you have learned',
-                    'available_time': $scope.courseDetail.startDate,
-                    'description' : 'DIY'
-                }
-            ]
+            var lessonPromise = $http.get("/api/lesson/" + $scope.courseDetail.id);
+            lessonPromise.success(function(data) {
+                $scope.lessons = data;
+            });
+
+            ////further fetch lessons here
+            //$scope.lessons = [
+            //    {
+            //        'topic': 'Introduction',
+            //        'available_time': $scope.courseDetail.startDate,
+            //        'description' : 'first lesson meet the class'
+            //    },
+            //    {
+            //        'topic': 'Learn the tools',
+            //        'available_time': $scope.courseDetail.startDate,
+            //        'description' : 'learn how to use the tools for development'
+            //    },
+            //    {
+            //        'topic': 'Hands on implementation',
+            //        'available_time': $scope.courseDetail.startDate,
+            //        'description' : 'actual implementation'
+            //    },
+            //    {
+            //        'topic': 'Apply what you have learned',
+            //        'available_time': $scope.courseDetail.startDate,
+            //        'description' : 'DIY'
+            //    }
+            //]
 
             $scope.currentUser = {};
             $http.get("/api/user").then(function (response) {
