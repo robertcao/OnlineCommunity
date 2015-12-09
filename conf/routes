@@ -42,6 +42,13 @@ POST        /api/course/take/:userid/:courseid controllers.CourseController.take
 GET         /api/courses/registered/:userid     controllers.CourseController.registeredCourses(userid: Long)
 
 
+# Lesson Management Module
+POST         /api/lesson          controllers.LessonController.create()
+GET          /api/lesson/:courseid        controllers.LessonController.getLessons(courseid:Long)
+GET          /api/lessons          controllers.LessonController.listLessons()
+
+
+
 # Map static resources from the /public folder to the /assets URL path
 GET         /assets/*file        controllers.Assets.at(path="/public", file)
 GET         /angular-busy.html   controllers.Assets.at(path="/public", file="/html/angular-busy.html")
