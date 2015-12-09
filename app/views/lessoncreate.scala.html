@@ -67,22 +67,18 @@
                 <div class="course-card" >
                   <ng-form class="contact-form" name="courseForm" >
                     <fieldset ng-disabled="isSaving">
-                      <input type="text" ng-required="true" ng-model="lesson.lessonName" placeholder="lesson name"/>
-                      <br/>
-                      <input type="text" ng-required="true" ng-model="lesson.courseName" placeholder="Course name"/>
-                      <br/>
-                      <input type="number" ng-required="true" ng-model="lesson.duration" placeholder="lesson duration in mins"/>
+                      <input type="text" ng-required="true" ng-model="lesson.topic" placeholder="lesson topic name"/>
                       <br/>
                       <textarea rows="4" cols="50" ng-required="true" ng-model="lesson.description" placeholder="Enter lesson description here..."></textarea>
 
                       <br/>
                       <div class="form-group">
                         <div class="col-md-5 pull-left" ng-controller="DatePickController">
-                          <pre class="alert alert-info">Start Date: <em>{{lesson.startDate | date:'fullDate' }} {{lesson.startDate | date:'shortTime' }}</em></pre>
-                          <datepicker ng-model="lesson.startDate" min-date="minDate" show-weeks="true" class="well well-sm"></datepicker>
+                          <pre class="alert alert-info">Start Date: <em>{{lesson.available_time | date:'fullDate' }} {{lesson.available_time | date:'shortTime' }}</em></pre>
+                          <datepicker ng-model="lesson.available_time" min-date="minDate" show-weeks="true" class="well well-sm"></datepicker>
                           <div ng-controller="TimePickController">
                               <!-- pre class="alert alert-info">Time is: {{course.startTime | date:'shortTime' }}</pre -->
-                            <timepicker ng-model="lesson.startDate" ng-change="changedStart()" hour-step="hstep" minute-step="mstep" show-meridian="ismeridian"></timepicker>
+                            <timepicker ng-model="lesson.available_time" ng-change="changedStart()" hour-step="hstep" minute-step="mstep" show-meridian="ismeridian"></timepicker>
                           </div>
                         </div>
                       </div>

@@ -141,7 +141,16 @@ Free for personal and commercial use under the CCA 3.0 license (html5up.net/lice
 						</div>
 						<div class="8u 12u(mobile) important(mobile)" id="content">
 							<article id="main">
-								<img height="300" width="300" src="@routes.Assets.at("/images/" + user.thumbnail_id)" alt="" />
+								<img height="300" width="300" src="@user.thumbnail_id" alt="" />
+
+								<br>
+								<h4>Change your profile picture:</h4>
+								@helper.form(action = routes.FileUpload.upload, 'enctype -> "multipart/form-data") {
+									<input type="file" name="upload">
+									<input type="submit" value="Upload new profile">
+								}
+
+								<br>
 
 								<h4>Self Introduction:</h4>
 								<p>@instructor.description</p>

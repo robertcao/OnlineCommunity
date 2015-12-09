@@ -5,13 +5,11 @@ import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
 import com.google.common.collect.Lists;
-import models.Course;
-import models.Instructor;
-import models.Learner;
-import models.User;
+import models.*;
 import play.libs.Json;
 import play.mvc.BodyParser;
 import play.mvc.Controller;
+import play.mvc.Http;
 import play.mvc.Result;
 import views.html.coursecreate;
 import views.html.lessoncreate;
@@ -47,7 +45,11 @@ public class CourseController extends Controller{
         JsonNode json = request().body().asJson();
         System.out.println("received json=" + json.toString());
         Course course = Json.fromJson(json, Course.class);
+
+        //Set default picture
+        course.setThumbnail_id("https://s3-us-west-2.amazonaws.com/cmpe295ocbucket/5ae8609a-c66a-450d-8f15-f25f6d25eb7c/course_default.png");
         course.save();
+
         //need to save instructor here.
         List<Instructor> instructors = Instructor.findByName.where().eq("name", course.getInstructor()).findList();
         if (instructors == null || instructors.isEmpty()) {
@@ -55,6 +57,7 @@ public class CourseController extends Controller{
             Instructor instructor = new Instructor(null, user.user_name, null, 0, user.thumbnail_id);
             instructor.save();
         }
+
         return ok(Json.toJson(course));
     }
 

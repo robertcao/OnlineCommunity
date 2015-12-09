@@ -28,7 +28,14 @@ import play.libs.Json;
 import play.mvc.Security;
 import views.html.*;
 
+
+
+
 public class User_Controller extends Controller {
+
+    public static User user = new User();
+    public static Instructor instructor = new Instructor();
+
     static {
         ObjectMapper mapper = new ObjectMapper();
         mapper.enable(SerializationFeature.INDENT_OUTPUT);
@@ -96,11 +103,11 @@ public class User_Controller extends Controller {
             System.out.println("User ====> " + userList);
 
             if (userList != null) {
-                User user = userList.get(0);
+                user = userList.get(0);
 
                 List<Instructor> instructorList = Instructor.findByName.where().eq("name", user.user_name).findList();
                 System.out.println("Instructor ====> " + instructorList);
-                Instructor instructor = new Instructor();
+
                 if (instructorList.size() != 0)
                     instructor = instructorList.get(0);
 
@@ -117,10 +124,10 @@ public class User_Controller extends Controller {
         List<User> userList = User.findByEmail.where().eq("email", request().username()).findList();
 
         if (userList != null) {
-            User user = userList.get(0);
+            user = userList.get(0);
 
             List<Instructor> instructorList = Instructor.findByName.where().eq("name", user.user_name).findList();
-            Instructor instructor = new Instructor();
+
             if (instructorList.size() != 0)
                 instructor = instructorList.get(0);
 
@@ -144,6 +151,8 @@ public class User_Controller extends Controller {
     // to page: /logout
     public static Result logout() {
         session().clear();
+        user = null;
+        instructor = null;
 
         System.out.println("Session: " + session());
         flash("success", "You have been logged out, redirect to index page.");

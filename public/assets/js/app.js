@@ -49,29 +49,38 @@ courseApp.controller('CourseController', ['$scope', '$http', '$location', functi
                 $scope.instructor = data;
             });
 
+            var lessonPromise = $http.get("/api/lesson/" + $scope.courseDetail.id);
+            lessonPromise.success(function(data) {
+                $scope.lessons = data;
+            });
+
             //further fetch lessons here
-            $scope.lessons = [
-                {
-                    'topic': 'Introduction',
-                    'available_time': $scope.courseDetail.startDate,
-                    'description' : 'first lesson meet the class'
-                },
-                {
-                    'topic': 'Learn the tools',
-                    'available_time': $scope.courseDetail.startDate,
-                    'description' : 'learn how to use the tools for development'
-                },
-                {
-                    'topic': 'Hands on implementation',
-                    'available_time': $scope.courseDetail.startDate,
-                    'description' : 'actual implementation'
-                },
-                {
-                    'topic': 'Apply what you have learned',
-                    'available_time': $scope.courseDetail.startDate,
-                    'description' : 'DIY'
-                }
-            ]
+            //$scope.lessons = [
+            //    {
+            //        'id': '10001',
+            //        'topic': 'Introduction',
+            //        'available_time': $scope.courseDetail.startDate,
+            //        'description' : 'first lesson meet the class'
+            //    },
+            //    {
+            //        'id': '10002',
+            //        'topic': 'Learn the tools',
+            //        'available_time': $scope.courseDetail.startDate,
+            //        'description' : 'learn how to use the tools for development'
+            //    },
+            //    {
+            //        'id': '10003',
+            //        'topic': 'Hands on implementation',
+            //        'available_time': $scope.courseDetail.startDate,
+            //        'description' : 'actual implementation'
+            //    },
+            //    {
+            //        'id': '10004',
+            //        'topic': 'Apply what you have learned',
+            //        'available_time': $scope.courseDetail.startDate,
+            //        'description' : 'DIY'
+            //    }
+            //]
 
             $scope.currentUser = {};
             $http.get("/api/user").then(function (response) {
@@ -206,7 +215,25 @@ courseApp.controller('SignUpDatePickController', ['$scope', '$http', function ($
     $scope.format = $scope.formats[0];
 }]);
 
+courseApp.controller('urlCtrl', function ($scope, $log, $window) {
+    $scope.ToVideo = function () {
+        var url = "http://ec2-52-11-111-157.us-west-2.compute.amazonaws.com/playvideo#" + $scope.lesson.id + ".mp4";
+        $log.log(url);
+        $window.location.href = url;
+    };
 
+    $scope.ToClass = function () {
+        var url = "https://ec2-52-11-111-157.us-west-2.compute.amazonaws.com/playvideo#" + $scope.lesson.id + "#" + $scope.currentUser.user_name + "#" + $scope.isUserInstructor;
+        $log.log(url);
+        $window.location.href = url;
+    };
+
+    $scope.ToIntro = function () {
+        var url = "https://ec2-52-11-111-157.us-west-2.compute.amazonaws.com/course#" + $scope.courseId;
+        $log.log(url);
+        $window.location.href = url;
+    };
+});
 
 
 var courseCreateApp = angular.module('courseCreateApp', ['ngAnimate', 'ui.bootstrap', 'cgBusy']);

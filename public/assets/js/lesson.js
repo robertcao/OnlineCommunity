@@ -10,16 +10,42 @@
         $scope.currentUser = {};
         $http.get("/api/user").then(function (response) {
             $scope.currentUser = response.data;
-            $scope.lesson.instructor = $scope.currentUser;
+            //$scope.lesson.instructor_name = $scope.currentUser.;
         });
+
+
+        $scope.typeahead = function(val) {
+            return $http.get("/api/coursesbyname/"+val).then(function (response) {
+                console.log(JSON.stringify(response.data));
+                return response.data.map(function(course) {
+                    return course.courseName;
+                });
+            });
+        }
+
+        $scope.queryCourse = function(val) {
+            return $http.get("/api/coursesbyname/"+val).then(function (response) {
+                $scope.selectedCourse = response.data[0];
+                $scope.lesson.course_id = $scope.selectedCourse.id;
+                $scope.lesson.course_name = $scope.selectedCourse.courseName;
+                return response.data[0];
+            });
+        }
+
+
+
+
 
         $scope.submitMylessonForm = function () {
 
             $scope.isSaving = true;
-            $scope.submitPromise = $http.post('/api/lessons', $scope.lesson);
+
+            $scope.submitPromise = $http.post('/api/lesson', $scope.lesson);
             $scope.submitPromise.success(function (data, status, headers, config) {
+
                 $scope.message = data;
-                $window.location.href = '/lesson#?lessonId=' + data.id;
+                alert("lesson successfully created: " + JSON.stringify(data));
+                //$window.location.href = '/lesson#?lessonId=' + data.id;
 
             });
             $scope.submitPromise.error(function (data, status, headers, config) {
@@ -34,12 +60,12 @@
     lessonCreateApp.controller('DatePickController', ['$scope', '$http', function ($scope, $http) {
 
         $scope.today = function () {
-            $scope.lesson.startDate = new Date();
+            $scope.lesson.available_time = new Date();
         };
         $scope.today();
 
         $scope.clear = function () {
-            $scope.lesson.starDate = null;
+            $scope.lesson.available_time = null;
         };
 
         // Disable weekend selection
@@ -92,12 +118,12 @@
             var d = new Date();
             d.setHours(14);
             d.setMinutes(0);
-            $scope.mytime = d;
+            $scope.available_time = d;
             console.log('Time updated to:' + $scope.myTime);
         };
 
         $scope.changedStart = function () {
-            console.log('Time start changed to: ' + $scope.lesson.startDate);
+            console.log('Time start changed to: ' + $scope.lesson.available_time);
         };
 
         $scope.changedEnd = function () {
@@ -105,7 +131,7 @@
         };
 
         $scope.clear = function () {
-            $scope.mytime = null;
+            $scope.available_time = null;
         };
 
     }]);
