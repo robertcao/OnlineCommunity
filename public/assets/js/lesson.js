@@ -7,52 +7,60 @@
         $scope.lesson = {};
         $scope.isSaving = undefined;
 
-        $scope.currentUser = {};
-        $http.get("/api/user").then(function (response) {
-            $scope.currentUser = response.data;
-            //$scope.lesson.instructor_name = $scope.currentUser.;
-        });
+        var courseIdParam = $location.search();
+        //alert(JSON.stringify(courseIdParam));
+        $scope.courseId = courseIdParam.courseId;
+        if ($scope.courseId != undefined) {
+            $http.get("/api/course/" + $scope.courseId).then(function (response) {
+                $scope.courseDetail = response.data;
 
-
-        $scope.typeahead = function(val) {
-            return $http.get("/api/coursesbyname/"+val).then(function (response) {
-                console.log(JSON.stringify(response.data));
-                return response.data.map(function(course) {
-                    return course.courseName;
+                $scope.currentUser = {};
+                $http.get("/api/user").then(function (response) {
+                    $scope.currentUser = response.data;
+                    //$scope.lesson.instructor_name = $scope.currentUser.;
                 });
+
+                var lessonPromise = $http.get("/api/lesson/" + $scope.courseDetail.id);
+                lessonPromise.success(function(data) {
+                    $scope.lessons = data;
+                });
+
+
+
+
+                $scope.submitMylessonForm = function () {
+
+                    $scope.isSaving = true;
+                    $scope.lesson.course_id =  $scope.courseDetail.id;
+                    $scope.lesson.course_name =  $scope.courseDetail.name;
+
+                    $scope.submitPromise = $http.post('/api/lesson', $scope.lesson);
+                    $scope.submitPromise.success(function (data, status, headers, config) {
+
+                        $scope.message = data;
+                        alert("lesson successfully created: " + JSON.stringify(data));
+                        $window.location.href = '/course#?courseId=' + $scope.courseDetail.id;
+                        //$window.location.href = '/lesson#?lessonId=' + data.id;
+
+                    });
+                    $scope.submitPromise.error(function (data, status, headers, config) {
+                        alert("failure message: " + JSON.stringify({data: data}));
+                        $scope.isSaving = false;
+                    });
+                }
+
+
+
+
             });
         }
+        else {
+            alert("you must pick a course first from profile page");
+            $window.location.href = '/profile';
 
-        $scope.queryCourse = function(val) {
-            return $http.get("/api/coursesbyname/"+val).then(function (response) {
-                $scope.selectedCourse = response.data[0];
-                $scope.lesson.course_id = $scope.selectedCourse.id;
-                $scope.lesson.course_name = $scope.selectedCourse.courseName;
-                return response.data[0];
-            });
         }
 
 
-
-
-
-        $scope.submitMylessonForm = function () {
-
-            $scope.isSaving = true;
-
-            $scope.submitPromise = $http.post('/api/lesson', $scope.lesson);
-            $scope.submitPromise.success(function (data, status, headers, config) {
-
-                $scope.message = data;
-                alert("lesson successfully created: " + JSON.stringify(data));
-                //$window.location.href = '/lesson#?lessonId=' + data.id;
-
-            });
-            $scope.submitPromise.error(function (data, status, headers, config) {
-                alert("failure message: " + JSON.stringify({data: data}));
-                $scope.isSaving = false;
-            });
-        }
 
     }]);
 

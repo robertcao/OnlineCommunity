@@ -46,7 +46,7 @@
 								<li><a href="#">Sport</a></li>
 							</ul>
 						</li>
-						<li><a href="/coursecreate">Course</a></li>
+						<li><a href="/coursecreate">Create Course</a></li>
 						<li><a href="/profile">Profile</a></li>
 						<li><a href="/">Logout</a></li>
 					</ul>
@@ -101,7 +101,7 @@
 								</ul>
 								<hr/>
 								<footer class="text-left">
-								<button onclick="location.href='/lessoncreate';" class="lesson-button" ng-show="isUserInstructor">Create new lesson</button>
+								<button class="lesson-button" ng-show="isUserInstructor" ng-click="goCreateLesson()">Create new lesson</button>
 								<button onclick="location.href='/coursecreate';" class="lesson-button" ng-show="isUserInstructor">Create new course</button>
 								<button class="lesson-button" ng-show="!isUserInstructor && !isUserRegistered" ng-click="takeThisCourseForm()">Take this course</button>
 								</footer>
