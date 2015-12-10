@@ -38,7 +38,6 @@
                     $scope.submitPromise.success(function (data, status, headers, config) {
 
                         $scope.message = data;
-                        alert("lesson successfully created: " + JSON.stringify(data));
                         $window.location.href = '/course#?courseId=' + $scope.courseDetail.id;
                         //$window.location.href = '/lesson#?lessonId=' + data.id;
 

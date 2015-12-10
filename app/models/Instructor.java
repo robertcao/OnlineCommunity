@@ -30,10 +30,8 @@ public class Instructor extends Model {
     @Constraints.Required
     public String school;
     @Constraints.Required
-    @JsonIgnore
     public String description;
     public int rating;
-    @JsonIgnore
     public String thumbnail_id;
 
     public Instructor() {

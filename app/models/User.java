@@ -46,7 +46,6 @@ public class User extends Model {
     public String first_name;
     public String last_name;
     public String gender;
-    @JsonIgnore
     public String thumbnail_id;
     @JsonIgnore
     public String created_at;

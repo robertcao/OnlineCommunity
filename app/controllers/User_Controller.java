@@ -206,6 +206,10 @@ public class User_Controller extends Controller {
         return ok(Json.toJson(User.find.where().eq("user_name", name).findList().get(0)));
     }
 
+    public static Result getInstructor(String name) {
+        return ok(Json.toJson(Instructor.find.where().eq("name", name).findList().get(0)));
+    }
+
 
     // Login Form
     public static class Login {

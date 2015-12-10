@@ -14,6 +14,7 @@ POST        /login                                    controllers.User_Controlle
 GET         /api/user                                 controllers.User_Controller.currentUser()
 GET         /api/user/:id                             controllers.User_Controller.getUser(id: Long)
 GET         /api/user/username/:name                  controllers.User_Controller.getUserByName(name: String)
+GET         /api/instructor/:name                       controllers.User_Controller.getInstructor(name: String)
 
 
 

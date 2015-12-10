@@ -10,6 +10,7 @@ Free for personal and commercial use under the CCA 3.0 license (html5up.net/lice
 		<link href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css" rel="stylesheet">
 		<link rel="stylesheet" href="@routes.Assets.at("assets/css/main.css")" />
 		<link rel="stylesheet" href="@routes.Assets.at("assets/css/style.css")" />
+		<link rel="stylesheet" href="@routes.Assets.at("assets/css/course_main.css")" />
 			<!--[if lte IE 8]><link rel="stylesheet" href="@routes.Assets.at("assets/css/ie8.css")" /><![endif]-->
 			<!-- angularJS -->
 		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.15/angular.min.js"></script>
@@ -51,13 +52,6 @@ Free for personal and commercial use under the CCA 3.0 license (html5up.net/lice
 								<li><a href="#">Music</a></li>
 								<li><a href="#">Math+Science</a></li>
 								<li><a href="#">Sport</a></li>
-							</ul>
-						</li>
-						<li>
-							<a href="/coursecreate">Courses</a>
-							<ul>
-								<li><a href="#">Teaching </a></li>
-								<li><a href="#">Learning</a></li>
 							</ul>
 						</li>
 						<li><a href="/signup">Signup</a></li>
@@ -121,7 +115,6 @@ Free for personal and commercial use under the CCA 3.0 license (html5up.net/lice
 			<section id="features2" class="container special" ng-controller="loadCoursesController">
 				<header>
 					<h2>Top</h2>
-					<p>Computer</p>
 				</header>
 				<div class="special-row">
 					<article class="special-article-wide" ng-repeat="course in listOfCourses.slice(((currentPage-1)*itemsPerPage), ((currentPage)*itemsPerPage))">
@@ -139,112 +132,17 @@ Free for personal and commercial use under the CCA 3.0 license (html5up.net/lice
 					</p>
 				</div>
 				<div class="special-row">
-					<form id="ratingsForm1" class="special-article-wide" ng-repeat="course in listOfCourses.slice(((currentPage-1)*itemsPerPage), ((currentPage)*itemsPerPage))">
-						<div class="stars" >
-							<input type="radio" name="star" class="star-1" id="star-11" />
-							<label class="star-1" for="star-1">1</label>
-							<input type="radio" name="star" class="star-2" id="star-12" />
-							<label class="star-2" for="star-2">2</label>
-							<input type="radio" name="star" class="star-3" id="star-13" />
-							<label class="star-3" for="star-3">3</label>
-							<input type="radio" name="star" class="star-4" id="star-14" />
-							<label class="star-4" for="star-4">4</label>
-							<input type="radio" name="star" class="star-5" id="star-15" />
-							<label class="star-5" for="star-5">5</label>
-							<span></span>
+						<div class="special-article-wide" ng-controller="indexRatingController" ng-repeat="course in listOfCourses.slice(((currentPage-1)*itemsPerPage), ((currentPage)*itemsPerPage))">
+							<rating ng-model="courseRating" max="courseRatingMax" readonly="courseRatingIsReadOnly" on-hover="hoveringOver(value)" on-leave="overStar = null"></rating>
+							<span class="label" ng-class="{'label-warning': percent<30, 'label-info': percent>=30 && percent<70, 'label-success': percent>=70}" ng-show="overStar && !courseRatingIsReadOnly">{{percent}}%</span>
 						</div>
-					</form>
 				</div>
 				<br/>
 				<pagination total-items="totalItems" ng-model="currentPage" ng-change="pageChanged()" items-per-page="itemsPerPage"></pagination>
 			</section>
 
 		</div>
-			<!-- 3. Top Finance -->
-		<div class="wrapper style1">
-			<section id="features3" class="container special">
-				<header>
-					<h2>Top</h2>
-					<p>Finance </p>
-				</header>
-				<div class="row">
-					<article class="4u 12u(mobile) special">
-						<a href="#" class="image featured"><img src="@routes.Assets.at("images/mongo_1.jpg")" alt="" /></a>
-						<header>
-							<h3><a href="#">Gravida aliquam penatibus</a></h3>
-						</header>
-						<p>
-									 </p>
-						<form id="ratingsForm7">
-							<div class="stars">
-								<input type="radio" name="star" class="star-1" id="7star-1" />
-								<label class="star-1" for="star-1">1</label>
-								<input type="radio" name="star" class="star-2" id="7star-2" />
-								<label class="star-2" for="star-2">2</label>
-								<input type="radio" name="star" class="star-3" id="7star-3" />
-								<label class="star-3" for="star-3">3</label>
-								<input type="radio" name="star" class="star-4" id="7star-4" />
-								<label class="star-4" for="star-4">4</label>
-								<input type="radio" name="star" class="star-5" id="7star-5" />
-								<label class="star-5" for="star-5">5</label>
-								<span></span>
-							</div>
-						</form>
-					</article>
-					<article class="4u 12u(mobile) special">
-						<a href="#" class="image featured"><img src="@routes.Assets.at("images/mongo_2.jpg")" alt="" /></a>
-						<header>
-							<h3><a href="#">Sed quis rhoncus placerat</a></h3>
-						</header>
-						<p>
 
-								</p>
-						<form id="ratingsForm8">
-							<div class="stars">
-								<input type="radio" name="star" class="star-1" id="8star-1" />
-								<label class="star-1" for="star-1">1</label>
-								<input type="radio" name="star" class="star-2" id="8star-2" />
-								<label class="star-2" for="star-2">2</label>
-								<input type="radio" name="star" class="star-3" id="8star-3" />
-								<label class="star-3" for="star-3">3</label>
-								<input type="radio" name="star" class="star-4" id="8star-4" />
-								<label class="star-4" for="star-4">4</label>
-								<input type="radio" name="star" class="star-5" id="8star-5" />
-								<label class="star-5" for="star-5">5</label>
-								<span></span>
-							</div>
-						</form>
-					</article>
-					<article class="4u 12u(mobile) special">
-						<a href="#" class="image featured"><img src="@routes.Assets.at("images/mongo_3.jpg")" alt="" /></a>
-						<header>
-							<h3><a href="#">Magna laoreet et aliquam</a></h3>
-						</header>
-						<p>
-
-								</p>
-						<form id="ratingsForm9">
-							<div class="stars">
-								<input type="radio" name="star" class="star-1" id="9star-1" />
-								<label class="star-1" for="star-1">1</label>
-								<input type="radio" name="star" class="star-2" id="9star-2" />
-								<label class="star-2" for="star-2">2</label>
-								<input type="radio" name="star" class="star-3" id="9star-3" />
-								<label class="star-3" for="star-3">3</label>
-								<input type="radio" name="star" class="star-4" id="9star-4" />
-								<label class="star-4" for="star-4">4</label>
-								<input type="radio" name="star" class="star-5" id="9star-5" />
-								<label class="star-5" for="star-5">5</label>
-								<span></span>
-							</div>
-						</form>
-					</article>
-				</div>
-				<br/>
-				<a href="#" class="button" style="float: right;">more</a>
-			</section>
-
-		</div>
 			<!-- Footer -->
 		<div id="footer">
 			<div class="container">
