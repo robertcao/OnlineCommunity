@@ -58,28 +58,24 @@ courseApp.controller('CourseController', ['$scope', '$http', '$location', '$wind
                 $window.location.href = '/lessoncreate#?courseId=' + $scope.courseDetail.id;
             }
 
-            //further fetch lessons here
+            ////further fetch lessons here
             //$scope.lessons = [
             //    {
-            //        'id': '10001',
             //        'topic': 'Introduction',
             //        'available_time': $scope.courseDetail.startDate,
             //        'description' : 'first lesson meet the class'
             //    },
             //    {
-            //        'id': '10002',
             //        'topic': 'Learn the tools',
             //        'available_time': $scope.courseDetail.startDate,
             //        'description' : 'learn how to use the tools for development'
             //    },
             //    {
-            //        'id': '10003',
             //        'topic': 'Hands on implementation',
             //        'available_time': $scope.courseDetail.startDate,
             //        'description' : 'actual implementation'
             //    },
             //    {
-            //        'id': '10004',
             //        'topic': 'Apply what you have learned',
             //        'available_time': $scope.courseDetail.startDate,
             //        'description' : 'DIY'
@@ -219,25 +215,7 @@ courseApp.controller('SignUpDatePickController', ['$scope', '$http', function ($
     $scope.format = $scope.formats[0];
 }]);
 
-courseApp.controller('urlCtrl', function ($scope, $log, $window) {
-    $scope.ToVideo = function () {
-        var url = "http://ec2-52-11-111-157.us-west-2.compute.amazonaws.com/playvideo#" + $scope.lesson.id + ".mp4";
-        $log.log(url);
-        $window.location.href = url;
-    };
 
-    $scope.ToClass = function () {
-        var url = "https://ec2-52-11-111-157.us-west-2.compute.amazonaws.com/#" + $scope.lesson.id + "#" + $scope.currentUser.user_name + "#" + $scope.isUserInstructor;
-        $log.log(url);
-        $window.location.href = url;
-    };
-
-    $scope.ToIntro = function () {
-        var url = "https://ec2-52-11-111-157.us-west-2.compute.amazonaws.com/course#" + $scope.courseId;
-        $log.log(url);
-        $window.location.href = url;
-    };
-});
 
 
 var courseCreateApp = angular.module('courseCreateApp', ['ngAnimate', 'ui.bootstrap', 'cgBusy']);

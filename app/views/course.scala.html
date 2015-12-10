@@ -90,27 +90,20 @@
 								</header>
 
 								<ul ng-repeat="lesson in lessons">
-									<li class="text-left">
+									<li class="text-left"><i class="glyphicon glyphicon-folder-open"></i>
 
-										<a href="/lesson"><h4><b>{{$index + 1}}&#46;&nbsp;{{lesson.topic}}</b></h4></a>
-
-										<div ng-controller="urlCtrl">
-											<button class="lesson-button" ng-show="isUserInstructor || isUserRegistered" ng-click="ToVideo()">Watch video</button>
-											<button class="lesson-button" ng-show="isUserInstructor || isUserRegistered" ng-click="ToClass()">Go to class</button>
-    									</div>
-
-										@*<button class="lesson-button" onclick="location.href='http://ec2-52-11-111-157.us-west-2.compute.amazonaws.com/playvideo#{{lesson.id}}.mp4';" ng-show="isUserInstructor || isUserRegistered">Watch video</button>*@
-										@*<button class="lesson-button" ng-href="http://ec2-52-11-111-157.us-west-2.compute.amazonaws.com/playvideo#{{lesson.id}}.mp4" ng-show="isUserInstructor || isUserRegistered">Watch video</button>*@
-										@*<button class="lesson-button" onclick="location.href='https://ec2-52-11-111-157.us-west-2.compute.amazonaws.com/#' + {{lesson.id}} + '#' + {{currentUser.username}} + '#' + {{isUserInstructor}};" ng-show="isUserInstructor || isUserRegistered">Go to class</button>*@
+										<a href="/videotime"><h3 class="lead">{{$index + 1}}&#46;&nbsp;{{lesson.topic}}</h3></a>
+										<button class="lesson-button" onclick="location.href='/videotime';" ng-show="isUserInstructor || isUserRegistered">Watch video</button>
+										<button class="lesson-button" onclick="location.href='/videotime';" ng-show="isUserInstructor || isUserRegistered">Go to class</button>
 
 									</li>
 									<!-- li class="text-left"><p class="text-left"> {{lesson.available_time}}</p></--li -->
 								</ul>
 								<hr/>
 								<footer class="text-left">
-									<button class="lesson-button" ng-show="isUserInstructor" ng-click="goCreateLesson()">Create new lesson</button>
-									<button onclick="location.href='/coursecreate';" class="lesson-button" ng-show="isUserInstructor">Create new course</button>
-									<button class="lesson-button" ng-show="!isUserInstructor && !isUserRegistered" ng-click="takeThisCourseForm()">Take this course</button>
+								<button class="lesson-button" ng-show="isUserInstructor" ng-click="goCreateLesson()">Create new lesson</button>
+								<button onclick="location.href='/coursecreate';" class="lesson-button" ng-show="isUserInstructor">Create new course</button>
+								<button class="lesson-button" ng-show="!isUserInstructor && !isUserRegistered" ng-click="takeThisCourseForm()">Take this course</button>
 								</footer>
 
 
@@ -123,61 +116,38 @@
 									<p>
 										</p>
 								</header>
-								<a href="#"><img width="560" height="315" ng-src="{{courseDetail.thumbnail_id}}" alt="" /></a>
-
-
-
-								<section id="mainvideo">
-									<h3>Introduction Video</h3>
-									<div id="instructorvideo">
-										<iframe width="560" height="315" src="https://www.youtube.com/embed/videoseries?list=PLHmzl8B-HJLmdfMNm8drkhbPQ7eHY_X3P" frameborder="0" allowfullscreen></iframe>
-									</div>
-
-									<div ng-controller="urlCtrl" ng-show="isUserInstructor">
-										<h3>Record Your Course Introduction Video</h3>
-										<button class="lesson-button" ng-click="ToIntro()">Record Now</button>
-									</div>
-								</section>
-
-								<section>
-									<h3>Course Rate</h3>
+								<a href="#" class="image featured"><img ng-src="{{courseDetail.thumbnail_id}}" alt="" /></a>
 									<div ng-controller="ratingController">
-										<rating ng-model="courseRating" max="courseRatingMax" readonly="courseRatingIsReadOnly" on-hover="hoveringOver(value)" on-leave="overStar = null"></rating>
-										<span class="label" ng-class="{'label-warning': percent<30, 'label-info': percent>=30 && percent<70, 'label-success': percent>=70}" ng-show="overStar && !courseRatingIsReadOnly">{{percent}}%</span>
+									<rating ng-model="courseRating" max="courseRatingMax" readonly="courseRatingIsReadOnly" on-hover="hoveringOver(value)" on-leave="overStar = null"></rating>
+									<span class="label" ng-class="{'label-warning': percent<30, 'label-info': percent>=30 && percent<70, 'label-success': percent>=70}" ng-show="overStar && !courseRatingIsReadOnly">{{percent}}%</span>
 									</div>
+
+								<section id="instructor">
+									<header>
+										<h2 class="text-left"><a href="/profile#?instructorid={{instructor.id}}">Instructor : {{instructor.first_name}} {{instructor.last_name}}</a></h2>
+									</header>
 								</section>
 
-								<hr/>
-								<section>
-									<h3>Course Details</h3>
-									<section id="instructor">
-										<header>
-											<h3 class="text-left"><a href="/profile#?instructorid={{instructor.id}}">Instructor : {{instructor.first_name}} {{instructor.last_name}}</a></h3>
-										</header>
-									</section>
-
-									<section id="learner" ng-show="isUserRegistered">
-										<header>
-											<h2 class="text-left">You already registered for this course</h2>
-										</header>
-									</section>
-									<section id="course-description" >
-										<header>
-											<h3 class="text-left">Course Description</h3>
-										</header>
-										<p class="text-left">
+								<section id="learner" ng-show="isUserRegistered">
+									<header>
+										<h2 class="text-left">You already registered for this course</h2>
+									</header>
+								</section>
+								<section id="course-description" >
+									<header>
+										<h3 class="text-left">Course Description</h3>
+									</header>
+									<p class="text-left">
 											{{courseDetail.description}}
-										</p>
-									</section>
-									<section>
-										<ul ng-repeat="lesson in lessons">
-											<li class="text-left"><i class="glyphicon glyphicon-folder-open"></i><h4 class="lead">{{$index + 1}}&#46;&nbsp;{{lesson.topic}}</h4></li>
-												<!-- li class="text-left"><p class="text-left"> {{lesson.available_time}}</p></--li -->
-											<li class="text-left">{{lesson.description}}</li>
-										</ul>
-									</section>
+									</p>
 								</section>
-
+								<section>
+									<ul ng-repeat="lesson in lessons">
+										<li class="text-left"><i class="glyphicon glyphicon-folder-open"></i><h3 class="lead">{{$index + 1}}&#46;&nbsp;{{lesson.topic}}</h3></li>
+											<!-- li class="text-left"><p class="text-left"> {{lesson.available_time}}</p></--li -->
+										<li class="text-left">{{lesson.description}}</li>
+									</ul>
+								</section>
 							</article>
 							<br/>
 							<br/>
