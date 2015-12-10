@@ -216,6 +216,25 @@ courseApp.controller('SignUpDatePickController', ['$scope', '$http', function ($
 }]);
 
 
+courseApp.controller('urlCtrl', function ($scope, $log, $window) {
+        $scope.ToVideo = function () {
+                var url = "http://ec2-52-11-111-157.us-west-2.compute.amazonaws.com/playvideo#" + $scope.lesson.id + ".mp4";
+               $log.log(url);
+                $window.location.href = url;
+            };
+
+            $scope.ToClass = function () {
+                var url = "https://ec2-52-11-111-157.us-west-2.compute.amazonaws.com/#" + $scope.lesson.id + "#" + $scope.currentUser.user_name + "#" + $scope.isUserInstructor;
+                $log.log(url);
+                $window.location.href = url;
+            };
+
+        $scope.ToIntro = function () {
+                var url = "https://ec2-52-11-111-157.us-west-2.compute.amazonaws.com/course#" + $scope.courseId;
+                $log.log(url);
+                $window.location.href = url;
+            };
+    });
 
 
 var courseCreateApp = angular.module('courseCreateApp', ['ngAnimate', 'ui.bootstrap', 'cgBusy']);
