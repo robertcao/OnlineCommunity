@@ -210,6 +210,17 @@ public class User_Controller extends Controller {
         return ok(Json.toJson(Instructor.find.where().eq("name", name).findList().get(0)));
     }
 
+    @Security.Authenticated(Secured.class)
+    public static Result currentInstructor() {
+        List<User> users = User.find.where().eq("email", request().username()).findList();
+        if (users !=null && !users.isEmpty()) {
+            User user = users.get(0);
+            return ok(Json.toJson(Instructor.find.where().eq("name", user.user_name).findList().get(0)));
+        }else{
+            return badRequest("no login user");
+        }
+    }
+
 
     // Login Form
     public static class Login {

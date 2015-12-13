@@ -1,0 +1,137 @@
+<!DOCTYPE HTML>
+<!--
+Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+  <head>
+    <title>Welcome to Online Community</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="@routes.Assets.at("assets/css/main.css")" />
+    <link rel="stylesheet" href="@routes.Assets.at("assets/css/style.css")" />
+    <link rel="stylesheet" href="@routes.Assets.at("assets/css/course_main.css")" />
+      <!--[if lte IE 8]><link rel="stylesheet" href="@routes.Assets.at("assets/css/ie8.css")" /><![endif]-->
+      <!-- angularJS -->
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.15/angular.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.15/angular-route.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.15/angular-animate.min.js"></script>
+    <script src="@routes.Assets.at("assets/js/ui-bootstrap-tpls-0.12.1.min.js")"></script>
+    <script src="@routes.Assets.at("assets/js/course.category.js")"></script>
+    <script>
+      var reloadWithParam = function(param){
+        console.log('reload param=' + param);
+        window.location.href = param;
+        window.location.reload();
+    };
+    </script>
+  </head>
+  <body class="left-sidebar" ng-app="categoryApp">
+    <div id="page-wrapper">
+
+        <!-- Header -->
+      <div id="header">
+
+          <!-- Inner -->
+        <div class="inner">
+          <header>
+            <h1><a href="/" id="logo">Online Community</a></h1>
+          </header>
+        </div>
+
+          <!-- Nav -->
+        <nav id="nav">
+          <ul>
+            <li><a href="/">Home</a></li>
+            <li>
+              <a href="#">Catagory</a>
+              <ul>
+                <li><a href="javascript:reloadWithParam('/category#?name=All')">All</a></li>
+                <li><a href="javascript:reloadWithParam('/category#?name=Art+Design')">Art+Design </a></li>
+                <li><a href="javascript:reloadWithParam('/category#?name=Computer')">Computer</a></li>
+                <li><a href="javascript:reloadWithParam('/category#?name=Finance')">Finance</a></li>
+                <li><a href="javascript:reloadWithParam('/category#?name=Life Skill')">Life Skill</a></li>
+                <li><a href="javascript:reloadWithParam('/category#?name=Language')">Language</a></li>
+                <li><a href="javascript:reloadWithParam('/category#?name=Music')">Music</a></li>
+                <li><a href="javascript:reloadWithParam('/category#?name=Math+Science')">Math+Science</a></li>
+                <li><a href="javascript:reloadWithParam('/category#?name=Sport')">Sport</a></li>
+              </ul>
+            </li>
+            <li><a href="/signup">Signup</a></li>
+            <li><a href="/profile">Profile</a></li>
+            <li><a href="/logout">Logout</a></li>
+          </ul>
+        </nav>
+
+      </div>
+
+
+    </div>
+
+
+
+      <!-- Features -->
+      <!-- 1. Top Arts & Design -->
+      <!-- 2. Top Computer -->
+    <div class="wrapper style1">
+      <section id="features2" class="container special" ng-controller="loadCoursesController">
+        <header>
+          <h2>{{category}}</h2>
+        </header>
+        <div class="row" ng-repeat="courseRow in allCourseRows">
+          <div class="special-row">
+            <article class="special-article-wide" ng-repeat="course in courseRow">
+              <a  href="/course#?courseId={{course.id}}" class="image fit"><img ng-src="{{course.thumbnail_id}}"/></a>
+            </article>
+          </div>
+          <div class="special-row">
+            <header class="special-article-wide" ng-repeat="course in courseRow">
+              <h3><a  href="/course#?courseId={{course.id}}">{{course.courseName}}</a></h3>
+            </header>
+          </div>
+          <div class="special-row">
+            <p class="special-article-wide" ng-repeat="course in courseRow">
+              <span  >{{course.description}}</span>
+            </p>
+          </div>
+          <div class="special-row">
+            <div class="special-article-wide" ng-controller="indexRatingController" ng-repeat="course in courseRow">
+              <rating ng-model="course.averageRating" max="courseRatingMax" readonly="courseRatingIsReadOnly" on-hover="hoveringOver(value)" on-leave="overStar = null"></rating>
+              <span class="label" ng-class="{'label-warning': percent<30, 'label-info': percent>=30 && percent<70, 'label-success': percent>=70}" ng-show="overStar && !courseRatingIsReadOnly">{{percent}}%</span>
+            </div>
+          </div>
+        </div>
+        <br/>
+
+      </section>
+
+    </div>
+
+      <!-- Footer -->
+    <div id="footer">
+      <div class="container">
+        <div class="row">
+
+            <!-- Copyright -->
+          <div class="copyright">
+            <ul class="menu">
+              <li>&copy; Online Community</li><li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
+            </ul>
+          </div>
+
+        </div>
+
+      </div>
+    </div>
+
+      <!-- Scripts -->
+    <script src="@routes.Assets.at("assets/js/jquery.min.js")"></script>
+    <script src="@routes.Assets.at("assets/js/jquery.dropotron.min.js")"></script>
+    <script src="@routes.Assets.at("assets/js/jquery.scrolly.min.js")"></script>
+    <script src="@routes.Assets.at("assets/js/jquery.onvisible.min.js")"></script>
+    <script src="@routes.Assets.at("assets/js/skel.min.js")"></script>
+    <script src="@routes.Assets.at("assets/js/util.js")"></script>
+    <script src="@routes.Assets.at("assets/js/main.js")"></script>
+
+  </body>
+</html>

@@ -36,14 +36,15 @@
 						<li>
 							<a href="#">Catagory</a>
 							<ul>
-								<li><a href="#">Art+Design </a></li>
-								<li><a href="#">Computer</a></li>
-								<li><a href="#">Finance</a></li>
-								<li><a href="#">Life Skill</a></li>
-								<li><a href="#">Language</a></li>
-								<li><a href="#">Music</a></li>
-								<li><a href="#">Math+Science</a></li>
-								<li><a href="#">Sport</a></li>
+								<li><a href="/category#?name=All">All</a></li>
+								<li><a href="/category#?name=Art+Design">Art+Design </a></li>
+								<li><a href="/category#?name=Computer">Computer</a></li>
+								<li><a href="/category#?name=Finance">Finance</a></li>
+								<li><a href="/category#?name=Life Skill">Life Skill</a></li>
+								<li><a href="/category#?name=Language">Language</a></li>
+								<li><a href="/category#?name=Music">Music</a></li>
+								<li><a href="/category#?name=Math+Science">Math+Science</a></li>
+								<li><a href="/category#?name=Sport">Sport</a></li>
 							</ul>
 						</li>
 						<li><a href="/profile">Profile</a></li>
@@ -141,7 +142,7 @@
 								<section>
 									<h3>Course Rate</h3>
 									<div ng-controller="ratingController">
-										<rating ng-model="courseRating" max="courseRatingMax" readonly="courseRatingIsReadOnly" on-hover="hoveringOver(value)" on-leave="overStar = null"></rating>
+										<rating ng-model="courseDetail.averageRating" max="courseRatingMax" readonly="courseRatingIsReadOnly" on-hover="hoveringOver(value)" on-leave="overStar = null"></rating>
 										<span class="label" ng-class="{'label-warning': percent<30, 'label-info': percent>=30 && percent<70, 'label-success': percent>=70}" ng-show="overStar && !courseRatingIsReadOnly">{{percent}}%</span>
 									</div>
 								</section>

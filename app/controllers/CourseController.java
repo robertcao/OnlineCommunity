@@ -11,6 +11,7 @@ import play.mvc.BodyParser;
 import play.mvc.Controller;
 import play.mvc.Http;
 import play.mvc.Result;
+import views.html.category;
 import views.html.coursecreate;
 import views.html.lessoncreate;
 
@@ -148,5 +149,20 @@ public class CourseController extends Controller{
             jsonNodes.add(Json.toJson(Course.findById.byId(learner.course_id)));
         }
         return ok(Json.toJson(jsonNodes));
+    }
+
+    public static Result getCoursesByCategory(String category) {
+
+        List<Course> courses = category.equalsIgnoreCase("All") ? Course.findById.all() :
+                Course.findByName.where().like("category", "%" + category +"%").findList();
+        List<JsonNode> jsonNodes = Lists.newArrayList();
+        for (Course course : courses) {
+            jsonNodes.add(Json.toJson(course));
+        }
+        return ok(Json.toJson(jsonNodes));
+    }
+
+    public static Result getCategory() {
+        return ok(category.render());
     }
 }

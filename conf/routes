@@ -14,7 +14,8 @@ POST        /login                                    controllers.User_Controlle
 GET         /api/user                                 controllers.User_Controller.currentUser()
 GET         /api/user/:id                             controllers.User_Controller.getUser(id: Long)
 GET         /api/user/username/:name                  controllers.User_Controller.getUserByName(name: String)
-GET         /api/instructor/:name                       controllers.User_Controller.getInstructor(name: String)
+GET         /api/instructor/:name                     controllers.User_Controller.getInstructor(name: String)
+GET         /api/instructor                           controllers.User_Controller.currentInstructor()
 
 
 
@@ -34,6 +35,8 @@ GET         /videohistory                             controllers.User_Controlle
 # Course Management Module
 GET         /coursecreate                             controllers.CourseController.createIndex()
 GET         /lessoncreate                             controllers.CourseController.createLesson()
+GET         /category                                 controllers.CourseController.getCategory()
+GET         /api/category/:name                           controllers.CourseController.getCoursesByCategory(name: String)
 GET         /api/courses                              controllers.CourseController.listCourses()
 GET         /api/courses/:instructorname              controllers.CourseController.getCourses(instructorname: String)
 GET         /api/coursesbyname/:name                  controllers.CourseController.getCourseByName(name: String)

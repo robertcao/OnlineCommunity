@@ -43,7 +43,7 @@ profileApp.controller('ProfileController', ['$scope', '$http', '$location', func
     }
 }]);
 
-profileApp.controller('profileRatingController', function ($scope) {
+profileApp.controller('ratingController', function ($scope) {
     $scope.courseRating = 5;
     $scope.courseRatingMax = 5;
     $scope.courseRatingIsReadOnly = true;
@@ -61,6 +61,50 @@ profileApp.controller('profileRatingController', function ($scope) {
         {stateOff: 'glyphicon-off'}
     ];
 });
+
+profileApp.controller('profileRatingController', ['$scope', '$http', '$location', function ($scope, $http, $location) {
+    var userIdParam = $location.search();
+    //alert(JSON.stringify(courseIdParam));
+    $scope.instructorid = userIdParam.instructorid;
+    if ($scope.instructorid == undefined) {
+        //get own rating,
+        $http.get("/api/instructor").then(function(response){
+
+            $scope.instructorRating = response.data.rating;
+            console.log(JSON.stringify('own instructor rating=' + $scope.instructorRating));
+        });
+
+    }
+    else {
+        var instructorPromise = $http.get("/api/user/" + $scope.instructorid);
+        instructorPromise.success(function(data) {
+            console.log(JSON.stringify(data));
+            $scope.instructor = data;
+            $http.get("/api/instructor/" + $scope.instructor.user_name).then(function(response){
+                $scope.instructorData = response.data;
+                console.log(JSON.stringify(response.data));
+                $scope.instructorRating = response.data.rating;
+
+            });
+        });
+    }
+
+    $scope.courseRatingMax = 5;
+    $scope.courseRatingIsReadOnly = true;
+
+    $scope.hoveringOver = function(value) {
+        $scope.overStar = value;
+        $scope.percent = 100 * (value / $scope.max);
+    };
+
+    $scope.ratingStates = [
+        {stateOn: 'glyphicon-ok-sign', stateOff: 'glyphicon-ok-circle'},
+        {stateOn: 'glyphicon-star', stateOff: 'glyphicon-star-empty'},
+        {stateOn: 'glyphicon-heart', stateOff: 'glyphicon-ban-circle'},
+        {stateOn: 'glyphicon-heart'},
+        {stateOff: 'glyphicon-off'}
+    ];
+}]);
 
 
 var courseApp = angular.module('courseApp', ['ui.bootstrap']);

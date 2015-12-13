@@ -48,16 +48,19 @@ Free for personal and commercial use under the CCA 3.0 license (html5up.net/lice
 						<li><a href="index.html">Home</a></li>
 						<li>
 							<a href="#">Catagory</a>
-							<ul>
-								<li><a href="#">Art+Design </a></li>
-								<li><a href="#">Computer</a></li>
-								<li><a href="#">Finance</a></li>
-								<li><a href="#">Life Skill</a></li>
-								<li><a href="#">Language</a></li>
-								<li><a href="#">Music</a></li>
-								<li><a href="#">Math+Science</a></li>
-								<li><a href="#">Sport</a></li>
-							</ul>
+
+								<ul>
+									<li><a href="/category#?name=All">All</a></li>
+									<li><a href="/category#?name=Art+Design">Art+Design </a></li>
+									<li><a href="/category#?name=Computer">Computer</a></li>
+									<li><a href="/category#?name=Finance">Finance</a></li>
+									<li><a href="/category#?name=Life Skill">Life Skill</a></li>
+									<li><a href="/category#?name=Language">Language</a></li>
+									<li><a href="/category#?name=Music">Music</a></li>
+									<li><a href="/category#?name=Math+Science">Math+Science</a></li>
+									<li><a href="/category#?name=Sport">Sport</a></li>
+								</ul>
+
 						</li>
 						<li><a href="profile">Profile</a></li>
 						<li><a href="/logout">Logout</a></li>
@@ -168,7 +171,7 @@ Free for personal and commercial use under the CCA 3.0 license (html5up.net/lice
 
 
 								<div ng-controller="profileRatingController">
-									<rating ng-model="courseRating" max="courseRatingMax" readonly="courseRatingIsReadOnly" on-hover="hoveringOver(value)" on-leave="overStar = null"></rating>
+									<rating ng-model="instructorRating" max="courseRatingMax" readonly="courseRatingIsReadOnly" on-hover="hoveringOver(value)" on-leave="overStar = null"></rating>
 									<span class="label" ng-class="{'label-warning': percent<30, 'label-info': percent>=30 && percent<70, 'label-success': percent>=70}" ng-show="overStar && !courseRatingIsReadOnly">{{percent}}%</span>
 								</div>
 
@@ -198,21 +201,10 @@ Free for personal and commercial use under the CCA 3.0 license (html5up.net/lice
 								</div>
 
 								<div class="special-row">
-									<form id="ratingsForm1" class="special-article" ng-repeat="course in courses">
-										<div class="stars">
-											<input type="radio" name="star" class="star-1" id="star-11" />
-											<label class="star-1" for="star-1">1</label>
-											<input type="radio" name="star" class="star-2" id="star-12" />
-											<label class="star-2" for="star-2">2</label>
-											<input type="radio" name="star" class="star-3" id="star-13" />
-											<label class="star-3" for="star-3">3</label>
-											<input type="radio" name="star" class="star-4" id="star-14" />
-											<label class="star-4" for="star-4">4</label>
-											<input type="radio" name="star" class="star-5" id="star-15" />
-											<label class="star-5" for="star-5">5</label>
-											<span></span>
-										</div>
-									</form>
+									<div class="special-article" ng-controller="ratingController" ng-repeat="course in courses">
+										<rating ng-model="course.averageRating" max="courseRatingMax" readonly="courseRatingIsReadOnly" on-hover="hoveringOver(value)" on-leave="overStar = null"></rating>
+										<span class="label" ng-class="{'label-warning': percent<30, 'label-info': percent>=30 && percent<70, 'label-success': percent>=70}" ng-show="overStar && !courseRatingIsReadOnly">{{percent}}%</span>
+									</div>
 								</div>
 								<hr/>
 								<h2> Current Learning</h2>
@@ -235,21 +227,10 @@ Free for personal and commercial use under the CCA 3.0 license (html5up.net/lice
 								</div>
 
 								<div class="special-row">
-										<form id="ratingsForm1" class="special-article" ng-repeat="course in registeredCourses">
-											<div class="stars">
-												<input type="radio" name="star" class="star-1" id="star-11" />
-												<label class="star-1" for="star-1">1</label>
-												<input type="radio" name="star" class="star-2" id="star-12" />
-												<label class="star-2" for="star-2">2</label>
-												<input type="radio" name="star" class="star-3" id="star-13" />
-												<label class="star-3" for="star-3">3</label>
-												<input type="radio" name="star" class="star-4" id="star-14" />
-												<label class="star-4" for="star-4">4</label>
-												<input type="radio" name="star" class="star-5" id="star-15" />
-												<label class="star-5" for="star-5">5</label>
-												<span></span>
-											</div>
-										</form>
+									<div class="special-article" ng-controller="ratingController" ng-repeat="course in registeredCourses">
+										<rating ng-model="course.averageRating" max="courseRatingMax" readonly="courseRatingIsReadOnly" on-hover="hoveringOver(value)" on-leave="overStar = null"></rating>
+										<span class="label" ng-class="{'label-warning': percent<30, 'label-info': percent>=30 && percent<70, 'label-success': percent>=70}" ng-show="overStar && !courseRatingIsReadOnly">{{percent}}%</span>
+									</div>
 								</div>
 
 
