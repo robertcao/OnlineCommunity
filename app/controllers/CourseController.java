@@ -47,8 +47,10 @@ public class CourseController extends Controller{
         System.out.println("received json=" + json.toString());
         Course course = Json.fromJson(json, Course.class);
 
-        //Set default picture
-        course.setThumbnail_id("https://s3-us-west-2.amazonaws.com/cmpe295ocbucket/5ae8609a-c66a-450d-8f15-f25f6d25eb7c/course_default.png");
+        if (course.getThumbnail_id() == null || course.getThumbnail_id().isEmpty()) {
+            //Set default picture
+            course.setThumbnail_id("https://s3-us-west-2.amazonaws.com/cmpe295ocbucket/5ae8609a-c66a-450d-8f15-f25f6d25eb7c/course_default.png");
+        }
         course.save();
 
         //need to save instructor here.
